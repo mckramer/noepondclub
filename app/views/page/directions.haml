@@ -1,0 +1,28 @@
+- content_for :title, "Directions"
+%article
+  - if @directions.nil?
+    %section
+      %h2 Where is Noe?
+      #map{:style => "background-color: gray; float: right; margin: 0 0 10px 10px;"}
+        %img{:src => "http://maps.google.com/maps/api/staticmap?center=40.736641,-74.424369&zoom=17&size=356x356&maptype=hybrid&markers=color:blue%7Clabel:NPC%7C40.737405,-74.425233&sensor=false"}
+      %p The Noe Pond Club is located at 395 Southern Boulevard in Chatham Township, New Jersey. Below are directions from various locations in New Jersey. Please select the directions from the location nearest you.
+    .clear
+    %section
+      %h2 Local points
+      %ul
+        %li
+          = link_to "Chatham Township", :controller => "page", :action => "directions", :from => "chatham"
+        %li
+          = link_to "Chatham Borough", :controller => "page", :action => "directions", :from => "chathamborough"
+        %li
+          = link_to "Madison", :controller => "page", :action => "directions", :from => "madison"
+        %li
+          = link_to "Summit", :controller => "page", :action => "directions", :from => "summit"
+    %section
+      %h2 Other points
+      %p Find directions to NPC from anywhere.
+      %script{ :src => "http://www.gmodules.com/ig/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/114281111391296844949/driving-directions.xml&amp;up_fromLocation=&amp;up_myLocations=395%20Southern%20Blvd%2C%20Chatham%20NJ%2C%2007928&amp;up_defaultDirectionsType=&amp;up_autoExpand=&amp;synd=open&amp;w=320&amp;h=55&amp;title=Directions+to+NPC+via+Google&amp;brand=light&amp;lang=en&amp;country=US&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js" }
+  - else
+    %section
+      %iframe{ :name => "resumeFrame", :id => "resumepartframe", :src => "https://noepondclub.org/directions/#{@directions}", :style => "width:100%; height:500px;" }
+      = link_to "Return", :back

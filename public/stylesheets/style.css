@@ -1,0 +1,387 @@
+/**********************************************
+ * Main stylesheet for Noe Pond Club
+ * by Max Kramer
+ * http://maxkramer.me/
+ **********************************************/
+@font-face {
+  font-family: 'AllerLightRegular';
+  src: url("http://transition.zhanxz.net/fonts/aller-fontface/aller_lt-webfont.eot");
+  src: local("?"), url("http://transition.zhanxz.net/fonts/aller-fontface/aller_lt-webfont.eot?iefix") format("eot"), url("http://transition.zhanxz.net/fonts/aller-fontface/aller_lt-webfont.woff") format("woff"), url("http://transition.zhanxz.net/fonts/aller-fontface/aller_lt-webfont.ttf") format("truetype"), url("../fonts/aller-fontface/aller_lt-webfont.svg#webfontywfdQTlG") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'LeanderRegular';
+  src: url("http://maxkramer.me/fonts/leander/Leander-webfont.eot");
+  src: url("http://maxkramer.me/fonts/leander/Leander-webfont.eot?#iefix") format("embedded-opentype"), url("http://maxkramer.me/fonts/leander/Leander-webfont.woff") format("woff"), url("http://maxkramer.me/fonts/leander/Leander-webfont.ttf") format("truetype"), url("http://maxkramer.me/fonts/leander/Leander-webfont.svg#LeanderRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* Verdigris */
+.clear {
+  clear: both; }
+
+/* Reset */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+a, a:link, a:visited {
+  text-decoration: none;
+  color: inherit; }
+
+a:hover {
+  text-decoration: underline; }
+
+/* Styles start */
+body {
+  background: #86c9ef url(http://maxkramer.me/projects/npc/images/bg/sun2-165.png) top left no-repeat;
+  /*background: #669 url(http://maxkramer.me/projects/npc/images/bg/cloud-rain-180.png) top left no-repeat;*/
+  color: #4C4C4B;
+  font-family: AllerLightRegular, sans-serif;
+  font-size: 1em;
+  margin: 40px auto;
+  padding: 0px;
+  width: 960px; }
+
+/* Containers */
+#bar {
+  background-color: #ccffcc;
+  line-height: 200%;
+  margin: 0px;
+  padding: 0px 20px;
+  z-index: 100; }
+
+body > header {
+  background: #43b3ae;
+  border-radius: 10px 0 0 10px;
+  clear: both;
+  margin-left: 150px;
+  padding: 5px 5px 5px 250px;
+  height: 50px; }
+  body > header h1 {
+    background: url(http://maxkramer.me/projects/npc/images/logo/logo5-cut.png) no-repeat;
+    height: 185px;
+    left: -330px;
+    position: relative;
+    text-indent: -10001px;
+    top: -90px;
+    width: 150px;
+    z-index: 101; }
+  body > header h2 {
+    font: bold 38px LeanderRegular, serif;
+    left: -150px;
+    position: relative;
+    top: -235px; }
+  body > header h3 {
+    font: normal 24px LeanderRegular, serif;
+    left: 200px;
+    position: relative;
+    top: -308px; }
+  body > header a:link, body > header a:visited {
+    color: white;
+    text-shadow: 0 0 2px #43b3ae; }
+  body > header a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 2px white; }
+
+body > aside {
+  background: #43b3ae;
+  border-radius: 10px;
+  float: left;
+  margin: 0px;
+  overflow: hidden;
+  padding: 0px;
+  width: 250px; }
+
+body > footer {
+  background: #43b3ae;
+  border-radius: 10px;
+  clear: both;
+  color: white;
+  margin-top: 20px;
+  padding: 10px; }
+  body > footer p {
+    text-align: center; }
+  body > footer a {
+    color: inherit;
+    text-decoration: none; }
+  body > footer a:hover {
+    color: #4C4C4B; }
+
+#validator {
+  background: white;
+  border-radius: 10px;
+  color: #43b3ae;
+  font-size: smaller;
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center; }
+  #validator a, #validator a:link, #validator a:visited {
+    color: inherit;
+    text-decoration: none; }
+  #validator a:hover {
+    border-bottom: 1px dotted black;
+    color: black; }
+
+#content {
+  float: right;
+  background-color: #43b3ae;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 695px; }
+  #content div {
+    padding: 10px; }
+
+#info {
+  margin: 0 0 40px 0;
+  padding: 0px; }
+
+nav.top, nav.info {
+  background: white;
+  font-size: 90%;
+  padding: 5px; }
+  nav.top ul, nav.info ul {
+    margin: 0 0 20px 0;
+    padding: 0px;
+    list-style-type: none; }
+    nav.top ul li, nav.info ul li {
+      float: left;
+      line-height: 110%;
+      padding: 4px 6px; }
+  nav.top a:link, nav.top a:visited, nav.info a:link, nav.info a:visited {
+    color: inherit; }
+  nav.top a.locked:hover, nav.info a.locked:hover {
+    color: #C32148; }
+
+nav.top {
+  border-radius: 10px 10px 0 0;
+  margin-left: 370px; }
+
+nav.info {
+  border-radius: 0 0 10px 10px;
+  margin: 0 0 10px 370px; }
+
+body > aside h1 {
+  background: white;
+  /*#aab;*/
+  font-size: 125%;
+  margin: 0px;
+  padding: 5px; }
+body > aside h2 {
+  background: lightgray;
+  border-radius: 10px;
+  font-size: 90%;
+  margin: 0px 20px;
+  padding: 6px; }
+body > aside h1 + h2 {
+  border-radius: 0 0 10px 10px; }
+body > aside p {
+  clear: both;
+  padding: 0px; }
+body > aside ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px; }
+  body > aside ul li {
+    margin: 0px;
+    border-top: 1px solid gray;
+    text-align: left; }
+    body > aside ul li a {
+      display: block;
+      border-left: 0.5em solid gray;
+      background-color: lightgray;
+      padding: 0.25em 0.5em 0.25em 0.75em;
+      text-decoration: none; }
+    body > aside ul li a:link, body > aside ul li a:visited {
+      color: #448; }
+    body > aside ul li a:hover {
+      background-color: #332;
+      border-color: #43B3AE;
+      color: #FFF; }
+    body > aside ul li a.locked {
+      background-position: right center; }
+    body > aside ul li a.locked:hover {
+      background-color: #f00;
+      border-color: #c00;
+      color: white; }
+    body > aside ul li ul li a {
+      border-left-width: 1em; }
+body > aside .social ol {
+  border-radius: 5px;
+  list-style-type: none;
+  margin: 3px 10px;
+  padding: 0;
+  overflow: hidden; }
+  body > aside .social ol li {
+    background-color: white;
+    border-bottom: 1px dashed black;
+    min-height: 50px;
+    padding: 4px; }
+    body > aside .social ol li img {
+      float: left;
+      margin: 0 8px 8px 0; }
+    body > aside .social ol li .time_ago {
+      color: gray;
+      font-size: 80%;
+      text-align: right; }
+    body > aside .social ol li a {
+      display: block; }
+    body > aside .social ol li a:hover {
+      text-decoration: none; }
+  body > aside .social ol li:hover {
+    background-color: lightgray; }
+
+#gallery-side {
+  /*text-align: center;*/ }
+
+nav.toc {
+  color: white;
+  font: 14px georgia, serif; }
+  nav.toc h1 {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    display: inline; }
+  nav.toc h1:after {
+    content: ":"; }
+  nav.toc ol {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    counter-reset: item; }
+  nav.toc li {
+    color: white;
+    display: inline;
+    margin: 0;
+    padding: 0px 5px;
+    counter-increment: item; }
+  nav.toc a, nav.toc a:link, nav.toc a:visited {
+    color: white;
+    text-decoration: none; }
+  nav.toc a:hover {
+    border-bottom: 1px white dotted; }
+  nav.toc li:before {
+    content: counter(item, upper-roman) ". "; }
+
+#topofpage {
+  text-align: right; }
+
+/********************************
+ *		Global classes			*
+ ********************************/
+abbr:hover {
+  cursor: help; }
+
+a img {
+  border: none; }
+
+#content h1 {
+  color: white;
+  margin: 15px; }
+
+#content article {
+  background-color: #ccffcc;
+  padding: 10px; }
+  #content article section {
+    margin: 10px; }
+  #content article h1, #content article h2, #content article h3 {
+    font-weight: normal;
+    padding-top: 0px;
+    margin-top: 0px;
+    border-bottom: 4px gray double; }
+  #content article p {
+    font-size: 110%; }
+  #content article h1 + p:first-letter {
+    font-size: 150%; }
+  #content article a {
+    color: inherit;
+    border-bottom: 1px black dotted;
+    text-decoration: none; }
+  #content article a:hover {
+    color: #aaa;
+    border-color: #aaa; }
+
+nav .locked {
+  background-image: url("http://maxkramer.me/projects/npc/images/link/locked-12.png");
+  background-position: right top;
+  background-repeat: no-repeat;
+  padding-right: 14px; }
+
+/********************************
+ *		Event calendar			*
+ ********************************/
+#events {
+  /*background: inherit;*/
+  /*border: 2px white solid;*/ }
+  #events table {
+    background: white;
+    border-collapse: collapse;
+    margin: 0px auto;
+    overflow: hidden;
+    text-align: center;
+    width: 210px; }
+    #events table thead {
+      background: #ccd; }
+    #events table tfoot {
+      color: blue;
+      text-align: left; }
+    #events table td {
+      /*border: 1px black dotted;*/ }
+    #events table th a {
+      text-decoration: none; }
+    #events table th a:hover {
+      border-bottom: 1px blue dotted; }
+    #events table td a, #events table td a:link {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      width: 100%; }
+    #events table td:hover {
+      background-color: #ccffcc; }
+    #events table tr.swimming th, #events table #events table tr.swimming td {
+      background-color: #0cf; }
+    #events table tr.tennis td {
+      background-color: #0f3; }
+  #events ul {
+    margin: 1px auto; }
+    #events ul li {
+      list-style-type: none; }
+      #events ul li span {
+        color: blue;
+        font-size: smaller;
+        padding-right: 15px; }
+
+/********************************
+ *			Info box			*
+ ********************************/
+#info > div {
+  border-radius: 10px;
+  margin: 0px;
+  padding: 10px; }
+
+#info h1, #info h2, #info h3 {
+  font-weight: normal;
+  margin: 5px 20px; }
+#info h2 {
+  padding: 0px 20px; }
+#info h3 {
+  padding: 0px 20px;
+  text-align: right; }
+#info a, #info a:link, #info a:visited {
+  color: inherit;
+  text-decoration: none; }
+#info a:hover {
+  color: #696969;
+  text-decoration: underline; }
+#info .warning {
+  background: red;
+  color: white; }
+#info .caution {
+  background: yellow; }
+#info .message {
+  background: #43b3ae; }
+#info img {
+  float: right;
+  height: 128px;
+  margin-right: 10px;
+  width: 128px; }

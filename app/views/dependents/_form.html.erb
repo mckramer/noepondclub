@@ -1,0 +1,12 @@
+<%= form_for @dependent do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :dob %><br />
+    <%= f.datetime_select :dob %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

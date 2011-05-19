@@ -1,0 +1,19 @@
+<% title "Dependents" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Dob</th>
+  </tr>
+  <% for dependent in @dependents %>
+    <tr>
+      <td><%= dependent.name %></td>
+      <td><%= dependent.dob %></td>
+      <td><%= link_to "Show", dependent %></td>
+      <td><%= link_to "Edit", edit_dependent_path(dependent) %></td>
+      <td><%= link_to "Destroy", dependent, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Dependent", new_dependent_path %></p>

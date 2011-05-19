@@ -1,0 +1,21 @@
+- content_for :title, "Contact"
+%article
+  %section
+    %h2 How can I get in contact with someone at NPC?
+    %ul
+      %li Employment opportunities
+      %li Suggestions for the club
+      %li Interested in joining and would like more information
+    %h2 Web contact form
+    %p You may use the form below to request more information.
+    %form
+      %label Name
+      %input{:type => "text"}
+      %br
+      %label Email
+      %input{:type => "email"}
+      %br
+      %label Comment
+      %textarea
+      %br
+      %input{:type => "submit"}

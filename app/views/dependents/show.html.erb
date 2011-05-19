@@ -1,0 +1,16 @@
+<% title "Dependent" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dependent.name %>
+</p>
+<p>
+  <strong>Dob:</strong>
+  <%= @dependent.dob %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_dependent_path(@dependent) %> |
+  <%= link_to "Destroy", @dependent, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", dependents_path %>
+</p>

@@ -1,0 +1,24 @@
+form {
+  font-size: 120%;
+}
+label {
+  display: block;
+}
+input, textarea {
+  border-radius: 3px;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 3px;
+}
+textarea {
+
+}
+input[type=submit], input[type=button] {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+input[type=submit]:hover {
+  background-color: teal;
+  color: white;
+}
