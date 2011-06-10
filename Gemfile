@@ -23,6 +23,9 @@ gem 'sass'
 # Social
 gem 'twitter'
 
+# Weather
+gem 'yahoo-weather'
+
 # Other
 gem 'jquery-rails'
 gem 'faker' # Forced here due to heroku needing it as production

@@ -1,0 +1,111 @@
+- content_for :title, "Member"
+- content_for :subtitle, "#{@member.badge}: #{@member.name}"
+%article
+  %section
+    %p= "Member for #{time_ago_in_words(@member.created_at)}"
+    %p= "Profile last updated #{time_ago_in_words(@member.updated_at)} ago"
+    %p
+      Membership type:
+      = @member.membership.humanize
+    %h2 Adults
+    %table{:class => 'reservations'}
+      %thead
+        %tr
+          %th Name
+          %th Legacy
+      %tbody
+        %tr
+          %td Mr. Charles Kramer, Jr.
+          %td= link_to "Yes", root_path
+        %tr
+          %td Mrs. Sandra Kramer
+          %td No
+    %h2 Children
+    %table{:class => 'reservations'}
+      %thead
+        %tr
+          %th Name
+          %th Birthdate
+          %th Emblem
+      %tbody
+        - 3.times do
+          %tr
+            %td= ['Max', 'Alex', 'Cam', 'Shannon', 'Kelsey', 'Matt', 'Bethany'].sample
+            - birthday = Date.today - 10.years - rand(5).years
+            - age = Date.today.year - birthday.year
+            - age -= 1 if Date.today < birthday + age.years
+            %td= "#{birthday.strftime("%m/%d/%y")} (#{age})"
+            %td= ['Red frog', 'Blue frog', 'Green fish', 'Gold fish'].sample
+    %h2 Current reservations
+    %h3 Tennis
+    %table{:class => "reservations"}
+      %thead
+        %tr
+          %th Date
+          %th Time
+          %th Court
+          %th Surface
+          %th 
+      %tbody
+        - 5.times do |index|
+          %tr
+            - current_time = Time.now
+            %td= (current_time - index.days).strftime("%B %d")
+            %td= "#{current_time.strftime("%I:%M")}-#{(current_time + 2.hours).strftime("%I:%M %p").sub(/(AM|PM)/) { |m| m.downcase }}"
+            %td= court = rand(10) + 1
+            %td= if court < 5 || court > 6; "Hard-tru"; else; "Turf"; end;
+            %td= link_to "Edit or cancel", root_path
+    %p= link_to "View all tennis reservations", member_tennis_reservations_path(@member)
+    %h2 Lessons
+    %h3 Tennis
+    %table{:class => "reservations"}
+      %thead
+        %tr
+          %th Date
+          %th Time
+          %th Instructor
+          %th Type
+          %th Pupil
+          %th Payment
+      %tbody
+        - 5.times do |index|
+          %tr
+            - current_time = Time.now
+            %td= (current_time - index.days).strftime("%B %d")
+            %td= "#{current_time.strftime("%I:%M")}-#{(current_time + rand(1).hours + 1.hour).strftime("%I:%M %p").sub(/(AM|PM)/) { |m| m.downcase }}"
+            %td= ['John', 'Eric'].sample
+            %td= lesson_type = ['Private', 'Semi-private'].sample
+            - if lesson_type == 'Private'
+              %td= ['Max', 'Cam', 'Alex', 'Kelsey', 'Bethany'].sample
+            - else
+              %td= ['Max', 'Cam', 'Alex', 'Kelsey', 'Bethany'].sample(2).join(", ")
+            - if rand(2) == 0
+              %td Paid
+            - else
+              %td= link_to "$#{rand(5) + 10} owed", root_path
+    %h3 Swimming
+    %table{:class => "reservations"}
+      %thead
+        %tr
+          %th Date
+          %th Time
+          %th Instructor
+          %th Type
+          %th Pupil
+          %th Payment
+      %tbody
+        - 5.times do |index|
+          %tr
+            - current_time = Time.now
+            %td= (current_time - index.days).strftime("%B %d")
+            %td= "#{current_time.strftime("%I:%M")}-#{(current_time + rand(1).hours + 1.hour).strftime("%I:%M %p").sub(/(AM|PM)/) { |m| m.downcase }}"
+            %td= ['Max', 'Cam', 'Bethany'].sample
+            %td= lesson_type = ['Private', 'Semi-private'].sample
+            - if lesson_type == 'Private'
+              %td= ['Max', 'Cam', 'Alex', 'Kelsey', 'Bethany'].sample
+            - else
+              %td= ['Max', 'Cam', 'Alex', 'Kelsey', 'Bethany'].sample(2).join(", ")
+            - if rand(2) == 0
+              %td Paid
+            - else
+              %td= link_to "$#{rand(5) + 10} owed", root_path

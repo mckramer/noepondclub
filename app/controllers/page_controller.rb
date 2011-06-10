@@ -1,6 +1,6 @@
 class PageController < ApplicationController
   def home
-  
+    @post = Post.last
   end
   
   def about
@@ -30,7 +30,7 @@ class PageController < ApplicationController
   end
   
   def current
-  
+    @posts = Post.all(:order => "id DESC")
   end
   
   def prospective

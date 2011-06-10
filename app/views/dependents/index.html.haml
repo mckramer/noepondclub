@@ -1,0 +1,18 @@
+- content_for :title, "Dependents"
+%article
+  %section
+    %table
+      %thead
+        %tr
+          %th Name
+          %th Date of birth
+      %tbody
+        - for dependent in @dependents
+          %tr
+            %td= dependent.name
+            %td= dependent.dob
+            %td= link_to "Show", dependent
+            %td= link_to "Edit", edit_member_dependent_path(@member, dependent)
+            %td= link_to "Destroy", dependent, :confirm => 'Are you sure?', :method => :delete
+      %tfoot
+    %p= link_to "New Dependent", new_member_dependent_path(@member)

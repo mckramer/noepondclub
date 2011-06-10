@@ -2,7 +2,7 @@
 
 1. http://www.noepondclub.org
 * Legacy site
-2. http://mck-noepond.heroku.com
+2. http://noepondclub.heroku.com
 * Development site (may be outdated version of this repository)
 
 

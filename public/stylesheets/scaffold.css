@@ -1,0 +1,37 @@
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  color: red;
+  /*padding: 3px 5px;*/
+}
+
+#error_explanation {
+  width: 75%;
+  background-color: red;
+  border-radius: 5px;
+  margin: 0 auto 20px auto;
+}
+
+#error_explanation h2 {
+  background-color: white;
+  border: none !important;
+  color: red;
+  margin: 0;
+  padding: 10px;
+}
+
+#error_explanation ul li {
+  list-style: square;
+  color: white;
+}

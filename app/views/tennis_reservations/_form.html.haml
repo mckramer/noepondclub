@@ -1,0 +1,25 @@
+= form_for @tennis_reservation do |f|
+  -if @tennis_reservation.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@tennis_reservation.errors.count, "error")} prohibited this tennis_reservation from being saved:"
+      %ul
+        - @tennis_reservation.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :member
+    = f.text_field :member
+  .field
+    = f.label :date
+    = f.date_select :date
+  .field
+    = f.label :start_at
+    = f.text_field :start_at
+  .field
+    = f.label :end_at
+    = f.text_field :end_at
+  .field
+    = f.label :court
+    = f.text_field :court
+  .actions
+    = f.submit 'Save'

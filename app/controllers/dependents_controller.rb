@@ -1,8 +1,18 @@
 class DependentsController < ApplicationController
+  before_filter(:get_member)
+
+  private
+  def get_member
+    @member = Member.find(params[:member_id])
+  end
+  
+  public
+  # GET /members/1/dependents
   def index
-    @dependents = Dependent.all
+    @dependents = @member.dependents
   end
 
+  # GET /members/1/dependents/1
   def show
     @dependent = Dependent.find(params[:id])
   end

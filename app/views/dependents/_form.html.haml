@@ -1,0 +1,13 @@
+= form_for @dependent do |f|
+  = f.error_messages
+  %table
+    %thead
+    %tbody
+      %tr
+        %td= f.label :name
+        %td= f.text_field :name
+      %tr
+        %td= f.label :dob
+        %td= f.datetime_select :dob
+    %tfoot
+  = f.submit

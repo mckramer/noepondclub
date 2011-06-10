@@ -1,0 +1,55 @@
+- content_for :title, resource_name.to_s.humanize
+- content_for :subtitle, "Edit #{resource_name.to_s.humanize}"
+%article
+  %section
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = devise_error_messages!
+      %table
+        %thead
+          %tr
+            %th{:colspan => 2} Information
+        %tbody
+          %tr
+            %th= f.label :name
+            %td= f.text_field :name
+          %tr
+            %th= f.label :email
+            %td= f.email_field :email
+          %tr
+            %th= f.label :badge
+            %td= f.number_field :badge
+          %tr
+            %th
+              = f.label :membership
+              = f.label :membership, 'Type of membership', :class => 'hint'
+            %td= f.select :membership, options_for_select(Member.membership_types), { :include_blank => true }
+      %table
+        %thead
+          %tr
+            %th{:colspan => 2} Change password
+        %tbody
+          %tr
+            %th
+              = f.label :password
+              = f.label :password, '(leave blank if you do not want to change it)', :class => 'hint'
+            %td= f.password_field :password
+          %tr
+            %th= f.label :password_confirmation
+            %td= f.password_field :password_confirmation
+      %table
+        %thead
+          %tr
+            %th{:colspan => 2} Current password
+        %tbody
+          %tr
+            %th
+              = f.label :current_password
+              = f.label :current_password, '(we need your current password to confirm your changes)', :class => 'hint'
+            %td= f.password_field :current_password
+        %tfoot
+      %p= f.submit "Update"
+    %h3 Cancel my account
+    %p 
+      Unhappy? 
+      = link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
+    = link_to "Back", :back

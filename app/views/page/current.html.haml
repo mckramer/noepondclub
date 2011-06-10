@@ -1,0 +1,7 @@
+- content_for :title, "Members"
+%article
+  %section
+    %h2 What's new?
+    %ol
+      - @posts.each do |post|
+        %li= link_to post.title, post

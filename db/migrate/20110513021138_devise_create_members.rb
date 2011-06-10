@@ -5,20 +5,16 @@ class DeviseCreateMembers < ActiveRecord::Migration
       t.recoverable
       t.rememberable
       t.trackable
-
-      # t.encryptable
-      # t.confirmable
       t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
-      # t.token_authenticatable
-
-      t.integer :number
+      
+      t.integer :badge
       t.string :membership
-      t.string :type
 
       t.timestamps
     end
 
     add_index :members, :email,                :unique => true
+    add_index :members, :badge,                :unique => true
     add_index :members, :reset_password_token, :unique => true
     # add_index :members, :confirmation_token,   :unique => true
     add_index :members, :unlock_token,         :unique => true

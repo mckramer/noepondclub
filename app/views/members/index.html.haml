@@ -1,0 +1,19 @@
+- content_for :title, "Members"
+%article
+  %section
+    %table
+      %thead
+        %tr
+          %th Badge
+          %th Name
+          %th Type
+          %th # of Adults
+          %th # of Children
+      %tbody
+        - @members.each do |member|
+          %tr
+            %td= link_to member.badge, member
+            %td= member.name
+            %td= member.membership.humanize
+            %td= member.independents.count
+            %td= member.dependents.count

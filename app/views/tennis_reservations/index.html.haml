@@ -1,0 +1,49 @@
+- content_for :title, "Tennis reservations"
+%article
+  %section
+    %p 
+      You can view existing and past court reservations below.  If you are unable to make a reservation, please remove the reservation below.  You can reserve a court 
+      = link_to "here.", new_member_tennis_reservation_path(@member)
+    %h2 Current reservations
+    - if @tennis_reservations.nil?
+      %p You do not have any upcoming reservations.
+    - else
+      %table
+        %thead
+          %tr
+            %th Date
+            %th Start
+            %th End
+            %th Court
+            %th Edit
+            %th Delete
+        %tbody
+          - @tennis_reservations.each do |tennis_reservation|
+            %tr
+              %td= tennis_reservation.member
+              %td= tennis_reservation.date
+              %td= tennis_reservation.start_at
+              %td= tennis_reservation.end_at
+              %td= tennis_reservation.court
+              %td= link_to "Edit", edit_member_tennis_reservation_path(@member, tennis_reservation)
+              %td= link_to "Delete", edit_member_tennis_reservation_path(@member, tennis_reservation)
+    %h2 Past reservations
+    - if @tennis_reservations.nil?
+      %p You do not have any past reservations.
+    - else
+      %table
+        %thead
+          %tr
+            %th Date
+            %th Start
+            %th End
+            %th Court
+        %tbody
+          - @tennis_reservations.each do |tennis_reservation|
+            %tr
+              %td= tennis_reservation.member
+              %td= tennis_reservation.date
+              %td= tennis_reservation.start_at
+              %td= tennis_reservation.end_at
+              %td= tennis_reservation.court
+    %p= link_to 'Make new court reservation for tennis', new_member_tennis_reservation_path(@member)

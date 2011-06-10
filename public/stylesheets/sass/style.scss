@@ -40,9 +40,8 @@ a:hover {
 }
 /* Styles start */
 body {
-	background: #86C9EF url(http://maxkramer.me/projects/npc/images/bg/sun2-165.png) top left no-repeat;
-	/*background: #669 url(http://maxkramer.me/projects/npc/images/bg/cloud-rain-180.png) top left no-repeat;*/
-  color: #4C4C4B;
+	background-color: #86C9EF;
+	color: #4C4C4B;
   font-family: AllerLightRegular, sans-serif;
   font-size: 1em;
 	margin: 40px auto;
@@ -122,8 +121,7 @@ body > footer {
     color: #4C4C4B;
   }
 }
-#validator
-{
+#validator {
 	background: white;
 	border-radius: 10px;
 	color: $teal;
@@ -140,14 +138,13 @@ body > footer {
     color: black;
   }
 }
-#content
-{
+#content {
 	float: right;
 	background-color: $teal;
 	border-radius: 10px;
 	overflow: hidden;
 	width: 695px;
-  div {
+  > div {
     padding: 10px;
   }
 }
@@ -226,7 +223,7 @@ body > aside {
         border-color: #43B3AE;
         color: #FFF;
       }
-      a.locked { background-position: right center;}
+      a.locked { background-position: right center; }
       a.locked:hover {
         background-color: #f00;
         border-color: #c00;
@@ -271,6 +268,28 @@ body > aside {
       }
       li:hover {
         background-color: lightgray;
+      }
+    }
+  }
+  .weather {
+    > div {
+      background-color: white;
+      border-radius: 5px;
+      margin: 3px 10px;
+      overflow: hidden;
+      h3 {
+        font-size: 110%;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      }
+    }
+    > .current-conditions {
+      padding: 10px 10px 10px 52px;
+    }
+    > .forecast {
+      > div {
+        padding: 10px 10px 10px 52px;
       }
     }
   }
@@ -322,16 +341,13 @@ nav.toc {
 /********************************
  *		Global classes			*
  ********************************/
-abbr
-{
+abbr {
 	
 }
-abbr:hover
-{
+abbr:hover {
 	cursor: help;
 }
-a img
-{
+a img {
 	border: none;
 }
 #content {
@@ -367,6 +383,17 @@ a img
   a:hover {
     color: #aaa;
     border-color: #aaa;
+  }
+  .featured {
+    background-color: #ffc;
+    margin: 10px 20px;
+    padding: 20px;
+    h2, h3 {
+      border: none;
+    }
+    h2 {
+      text-align: right;
+    }
   }
 }
 nav .locked {
@@ -483,5 +510,68 @@ nav .locked {
     height: 128px;
     margin-right: 10px;
     width: 128px;
+  }
+}
+.post {
+  p {
+    margin: 0.5em 0.5em;
+  }
+  .author {
+    font-size: 85%;
+    text-align: right;
+    padding: 0 !important;
+  }
+  .readmore {
+    text-align: right;
+    a {
+      background-color: white;
+      border: none !important;
+      padding: 6px 7px;
+    }
+  }
+}
+address {
+  font-style: normal;
+}
+address.postal {
+  background-color: white;
+  margin: 0 20px;
+  padding: 10px;
+  span {
+    display: block;
+  }
+}
+/* */
+table.reservations {
+  border-collapse: collapse;
+  border-radius: 5px;
+  border-spacing: 0;
+  margin: 10px auto;
+  overflow: hidden;
+  width: 90%;
+  thead {
+    background-color: lightgray;
+    tr {
+      th {
+      
+      }
+    }
+  }
+  tbody {
+    background-color: white;
+    tr {
+      th, td {
+        padding: 3px;
+      }
+      th {
+      
+      }
+      td {
+        text-align: center;
+      }
+    }
+  }
+  tfoot {
+  
   }
 }

@@ -1,0 +1,7 @@
+- content_for :title, "Post"
+- content_for :subtitle, "New post"
+%article
+  %section
+    = render 'form'
+    %p
+      = link_to "Back to posts", posts_path

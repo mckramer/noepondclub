@@ -2,7 +2,7 @@
 <html lang="en">
   <head id="www-noepondclub-org">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><%= yield :title %> | Noe Pond Club</title>
+    <title><%= (content_for?(:title)) ? yield(:title) + " | Noe Pond Club" : "Noe Pond Club | Chatham, NJ" %></title>
     <meta name="title" content="Noe Pond Club">
     <meta name="description" content="Private swimming, tennis, and paddle club in Chatham, NJ.">
     <meta name="keywords" content="NPC, Noe, Pond, Club" /> 
@@ -28,38 +28,37 @@
     <meta property="og:email" content="contact@noepondclub.org" />
     <meta property="og:phone_number" content="973-377-2445" />
     <% end %>
-    <link rel="shortcut icon" href="/images/favicon.ico" />
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <!--<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />-->
     <%= stylesheet_link_tag :all %>
     <%= javascript_include_tag :defaults %>
+    <% if content_for?(:intro) %>
+    <%= javascript_include_tag "slider.js" %>
+    <% end %>
     <%= csrf_meta_tag %>
   </head>
-  <body class="<%= params.values_at(:controller, :action).join(' ') %>">
-    <div id="current-weather" style="position:absolute; top:5px; left:5px; font-size:200%;">78&deg;F</div>
+  <body class="<%= @body_classes.join(' ') %>">
+    <div id="current-weather" style="position:absolute; top:5px; left:5px; background-color: white; padding: 7px 10px; border-radius:10px; z-index:-99; font-size:80%;">Air: <%= @weather.condition.temp %>&deg;<%= @weather.units.temperature %>&emsp;Water: <%= render 'shared/condition-water' %></div>
+    <% if @weather_warning %>
     <div id="info">
-      <div class="caution">
-        <img src="http://maxkramer.me/projects/npc/images/weather/Thunderstorms.png" alt="Thunderstorms">
-        <h1>Caution: Thunderstorms are forecasted for today.</h1>
-        <h2>The club facilities will close in the event of thunder or lightning.</h2>
-        <h2>Members can take shelter beneath a grounded structure or in their cars.</h2>
-        <h3><a href="#">&rarr;&nbsp;Current weather in Chatham, NJ</a>&emsp;<a href="#">&rarr;&nbsp;Radar</a></h3>
-      </div>
+      <%= render 'shared/caution-thunderstorms' if @weather_warning === :thunderstorms %>
     </div>
+    <% end %>
     <nav class="top">
       <ul> 
-        <li><%= link_to "Home", :controller => "page", :action => "home" %></li> 
-        <li><%= link_to "Current members", { :controller => "page", :action => "home" }, :class => "locked" %></li> 
-        <li><%= link_to "Prospective members", :controller => "page", :action => "prospective" %></li> 
-        <li><%= link_to "Employment", :controller => "page", :action => "employment" %></li> 
-        <li><%= link_to "Directions", :controller => "page", :action => "directions" %></li> 
-        <li><%= link_to "Contact", :controller => "page", :action => "contact" %></li> 
+        <li><%= link_to "Home", root_path %></li> 
+        <li><%= link_to "Current members", "/current", :class => "locked" %></li> 
+        <li><%= link_to "Prospective members", "/prospective" %></li> 
+        <li><%= link_to "Employment", "/employment" %></li> 
+        <li><%= link_to "Directions", "/directions" %></li> 
+        <li><%= link_to "Contact", "/contact" %></li> 
 				</ul> 
     </nav>
     <header>
       <hgroup>
         <h1>NPC</h1> 
 				<h2><%= link_to "Noe Pond Club", root_path %></h2> 
-				<h3>the <%= link_to "family", :controller => "page", :action => "family" %></a> club since <%= link_to "1955", :controller => "page", :action => "history" %></h3>
+				<h3>the <%= link_to "family", "/about/family" %></a> club since <%= link_to "1955", "/about/history" %></h3>
       </hgroup>
       <div id="social" style="position:relative; top:-370px; left:530px;">
         <a href="http://www.twitter.com/NoePondClub">
@@ -73,8 +72,15 @@
     </header>
     <nav class="info">
       <ul>
-        <li><%= link_to "The Kramer family (#193)", root_path %></li>
-        <li><%= link_to "Logout", root_path %></li>
+        <% if current_member.nil? %>
+        <li><%= link_to "Login", new_member_session_path %></li>
+        <li><%= link_to "Apply for membership", root_path %></li>
+        <li><%= link_to "Signup", new_member_registration_path %></li>
+        <% else %>
+        <li><%= link_to "#{current_member.name} (##{current_member.badge})", member_path(current_member) %></li>
+        <li><%= link_to "Edit account", edit_member_registration_path %></li>
+        <li><%= link_to "Logout", destroy_member_session_path %></li>
+        <% end %>
       </ul>
     </nav>
     <% if content_for?(:intro) %>
@@ -85,7 +91,11 @@
     <div id="content">
       <% if current_page?(root_url) %>
       <% else %>
+        <% if content_for?(:subtitle) %>
+      <h1><%= yield :subtitle %></h1>
+        <% else %>
       <h1><%= yield :title %></h1>
+        <% end %>
       <% end %>
       <%= yield %>
     </div>
@@ -93,38 +103,73 @@
       <nav>
         <h1><img width="16px" src="http://www.softicons.com/download/system-icons/codex-icons-by-ilia-draznin/png/48/navigation.png" />&nbsp;&nbsp;Navigation</h1> 
         <ul> 
-          <li><%= link_to "Home", :controller => "page", :action => "home" %></li> 
+          <li><%= link_to "Home", root_path %></li> 
           <li>
-            <%= link_to "Current members", { :controller => "page", :action => "home" }, :class => "locked" %>
+            <%= link_to "Current members", root_path, :class => "locked" %>
+            <% if current_member.nil? %>
+            <% else %>
             <ul>
-              <li><%= link_to "Billing", { :controller => "page", :action => "home" }, :class => "locked" %></li>
-              <li><%= link_to "Court reservations", { :controller => "page", :action => "home" }, :class => "locked" %></li>
+              <li><%= link_to "Tennis court reservations", "/members/1/reservations/tennis", :class => "locked" %></li>
+              <% if true # (8..12).include?(Time.now.month) %>
+              <li><%= link_to "Paddle court reservations", "/members/1/reservations/paddle", :class => "locked" %></li>
+              <% end %>
+              <li><%= link_to "Tennis lessons", "/members/1/lessons/tennis", :class => "locked" %></li>
+              <li><%= link_to "Swim lessons", "/members/1/lessons/swimming", :class => "locked" %></li>
+              <li><%= link_to "Kids' Program", "/kidsprogram", :class => "locked" %></li>
             </ul>
-          </li> 
-          <li><%= link_to "Prospective members", :controller => "page", :action => "prospective" %></li> 
-          <li><%= link_to "Employment", :controller => "page", :action => "employment" %></li> 
-          <li><%= link_to "Directions", :controller => "page", :action => "directions" %></li> 
-          <li><%= link_to "Contact", :controller => "page", :action => "contact" %></li> 
+            <% end %>
+          </li>
+          <li><%= link_to "Prospective members", "/prospective" %></li> 
+          <li><%= link_to "Employment", "/employment" %></li> 
+          <li><%= link_to "Directions", "/directions" %></li> 
+          <li><%= link_to "Contact", "/contact" %></li> 
         </ul>
       </nav>
       <div class="social">
         <h1><img src="http://si0.twimg.com/images/dev/cms/intents/bird/bird_blue/bird_16_blue.png" />&nbsp;&nbsp;Twitter</h1>
-        <h2>From Noe's feed</h2>
+        <h2>From <a href="https://twitter.com/#!/NoePondClub">Noe Pond</a></h2>
         <ol>
-        <% Twitter::Search.new.from("NoePondClub").fetch.first(3).each do |tweet| %>
-          <% 3.times do %>
-          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %></div></a></li>
-          <% end %>
+        <% @npc_tweets.each do |tweet| %>
+          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
+        <% if @mentions_tweets.nil? %>
+        <% else %>
         <h2>Recent mentions</h2>
         <ol>
-        <% Twitter::Search.new.mentioning("NoePondClub").fetch.first(3).each do |tweet| %>
-          <% 3.times do %>
-          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %></div></a></li>
-          <% end %>
+        <% @mentions_tweets.each do |tweet| %>
+          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
+        <% end %>
+      </div>
+      <div class="weather">
+        <h1><img width="16px" src="http://www.androidsoftware.us/uploads/allimg/110417/2_041H153411001.png" />&nbsp;&nbsp;Weather</h1>
+        <h2>Current conditions</h2>
+        <div class="current-conditions">
+          <span class="temp">
+            <%= @weather.condition.temp %>&deg;<%= @weather.units.temperature %>
+          </span>
+          <br />
+          <span class="text">
+            <%= @weather.condition.text %>
+          </span>
+        </div>
+        <h2>Forecast</h2>
+        <div class="forecast">
+          <div class="weather-<%= @weather.forecasts[0].code %>">
+            <h3><%= @weather.forecasts[0].day %></h3>
+            High: <%= @weather.forecasts[0].high %>&deg;<%= @weather.units.temperature %>, 
+            Low: <%= @weather.forecasts[0].low %>&deg;<%= @weather.units.temperature %> 
+            <span class="text"><%= @weather.forecasts[0].text %></span>
+          </div>
+          <div class="weather-<%= @weather.forecasts[1].code %>">
+            <h3><%= @weather.forecasts[1].day %></h3>
+            High: <%= @weather.forecasts[0].high %>&deg;<%= @weather.units.temperature %>, 
+            Low: <%= @weather.forecasts[0].low %>&deg;<%= @weather.units.temperature %> 
+            <span class="text"><%= @weather.forecasts[1].text %></span>
+          </div>
+        </div>
       </div>
     </aside>
     <div class="clear"></div>
@@ -136,5 +181,14 @@
 		<div id="validator"> 
 			<a href="http://validator.w3.org/check?uri=referer">Valid XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a> | <a href="http://beta.feedvalidator.org/">Valid RSS</a> | <a href="http://www.google.com/chrome/">Google Chrome</a> | <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a> | <a href="http://weather.yahoo.com">Yahoo! Weather</a>
     </div>
+    <% if content_for?(:intro) %>
+    <script type="text/javascript"> 
+			$(document).ready(function() {
+				$('#slider').s3Slider({
+					timeOut: 7000
+				});
+			});
+		</script>
+    <% end %>
   </body>
 </html>

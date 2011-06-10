@@ -6,14 +6,15 @@ class CreateDependents < ActiveRecord::Migration
       t.string :name_last
       t.string :email
       t.date :dob
-      t.date :badge_redfrog
-      t.date :badge_bluefrog
-      t.date :badge_greenfish
-      t.date :badge_goldfish
-      t.date :badge_redshark
-      t.date :badge_maroonshark
-      t.date :badge_silverdolphin
-      t.date :badge_goldendolphin
+      t.date :emblem_redfrog
+      t.date :emblem_bluefrog
+      t.date :emblem_greenfish
+      t.date :emblem_goldfish
+      t.date :emblem_redshark
+      t.date :emblem_maroonshark
+      t.date :emblem_silverdolphin
+      t.date :emblem_goldendolphin
+      t.references :member
       t.timestamps
     end
   end

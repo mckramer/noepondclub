@@ -4,12 +4,16 @@ form {
 label {
   display: block;
 }
-input, textarea {
+label.hint {
+  font-size: 70%;
+}
+input, textarea, select {
   border-radius: 3px;
   border: none;
   font-size: inherit;
   font-family: inherit;
   padding: 3px;
+  width: 350px;
 }
 textarea {
 
@@ -22,3 +26,105 @@ input[type=submit]:hover {
   background-color: teal;
   color: white;
 }
+/* Tables styles */
+
+form table {
+  thead {
+  
+  }
+  tbody {
+    tr {
+      th, td {
+        padding: 3px 5px;
+      }
+      th {
+        background-color: lightgray;
+        text-align: left;
+      }
+      td {
+        background-color: white;
+      }
+    }
+  }
+  tfoot {
+  
+  }
+  input {
+    border: 1px solid lightgray;
+  }
+}
+
+
+/* Ninja styles */
+p > input[type=radio],
+p > input[type=checkbox] {
+  float: left;
+  height: 16px;
+  opacity: 0;
+}
+p > input[type=radio] + label,
+p > input[type=checkbox] + label {
+	background: url(http://www.thecssninja.com/demo/css_custom-forms/gr_custom-inputs.png) 0 -1px no-repeat;
+	height: 16px;
+  padding-left: 20px;
+}
+p > input[type=radio] + label	{ 
+  background-position: 0 -161px; 
+}
+/* Checked styles */
+p > input[type=radio]:checked + label { 
+  background-position: 0 -241px; 
+}
+p > input[type=checkbox]:checked + label { 
+  background-position: 0 -81px; 
+}
+p > input[type=checkbox]:hover:checked + label,
+p > input[type=checkbox]:focus:checked + label,
+p > input[type=checkbox]:checked + label:hover,
+p > input[type=checkbox]:focus:checked + label { 
+  background-position: 0 -101px; 
+}
+p > input[type=radio]:hover:checked + label,
+p > input[type=radio]:focus:checked + label,
+p > input[type=radio]:checked + label:hover,
+p > input[type=radio]:focus:checked + label { 
+  background-position: 0 -261px; 
+}
+p > input[type=checkbox]:hover + label,
+p > input[type=checkbox]:focus + label,
+p > input[type=checkbox] + label:hover { 
+  background-position: 0 -21px; 
+}
+p > input[type=radio]:hover + label,
+p > input[type=radio]:focus + label,
+p > input[type=radio] + label:hover	{ 
+  background-position: 0 -181px; 
+}
+p > input[type=checkbox]:active + label,
+p > input[type=checkbox] + label:hover:active					{ background-position: 0 -41px; }
+p > input[type=radio]:active + label,
+p > input[type=radio] + label:hover:active						{ background-position: 0 -201px; }
+p > input[type=checkbox]:active:checked + label,
+p > input[type=checkbox]:checked + label:hover:active			{ background-position: 0 -121px; }
+p > input[type=radio]:active:checked + label,
+p > input[type=radio]:checked + label:hover:active				{ background-position: 0 -281px; }
+p > input[type=checkbox]:disabled + label,
+p > input[type=checkbox]:hover:disabled + label,
+p > input[type=checkbox]:focus:disabled + label,
+p > input[type=checkbox]:disabled + label:hover,
+p > input[type=checkbox]:disabled + label:hover:active			{ background-position: 0 -61px; }
+p > input[type=radio]:disabled + label,
+p > input[type=radio]:hover:disabled + label,
+p > input[type=radio]:focus:disabled + label,
+p > input[type=radio]:disabled + label:hover,
+p > input[type=radio]:disabled + label:hover:active				{ background-position: 0 -221px; }
+p > input[type=checkbox]:disabled:checked + label,
+p > input[type=checkbox]:hover:disabled:checked + label,
+p > input[type=checkbox]:focus:disabled:checked + label,
+p > input[type=checkbox]:disabled:checked + label:hover,
+p > input[type=checkbox]:disabled:checked + label:hover:active	{ background-position: 0 -141px; }
+p > input[type=radio]:disabled:checked + label,
+p > input[type=radio]:hover:disabled:checked + label,
+p > input[type=radio]:focus:disabled:checked + label,
+p > input[type=radio]:disabled:checked + label:hover,
+p > input[type=radio]:disabled:checked + label:hover:active		{ background-position: 0 -301px; }

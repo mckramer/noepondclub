@@ -14,13 +14,13 @@ class Dependent < ActiveRecord::Base
   end
   
   def current_badge
-    if self.badge_goldendolphin.empty?
-      if self.badge_silverdolphin.empty?
-        if self.badge_maroonshark.empty?
-          if self.badge_redshark.empty?
-            if self.badge_goldfish.empty?
-              if self.badge_greenfish.empty?
-                if self.badge_bluefrog.empty?
+    if self.emblem_goldendolphin.empty?
+      if self.emblem_silverdolphin.empty?
+        if self.emblem_maroonshark.empty?
+          if self.emblem_redshark.empty?
+            if self.emblem_goldfish.empty?
+              if self.emblem_greenfish.empty?
+                if self.emblem_bluefrog.empty?
                   return "Red frog"
                 else
                   return "Blue frog"

@@ -1,9 +1,0 @@
-.caution
-  %img{ :src => "http://maxkramer.me/projects/npc/images/weather/Thunderstorms.png", :alt => "Thunderstorms" }
-  %h1 Caution: Thunderstorms are forecasted for today
-  %h2 The club facilities will close in the event of thunder or lightning.
-  %h2 Members can take shelter beneath a grounded structure or in their cars.
-  %h3 
-    %a{ :href => "#" } &rarr;&nbsp;Current weather in Chatham, NJ
-    &emsp;
-    %a{ :href => "#" } &rarr;&nbsp;Radar

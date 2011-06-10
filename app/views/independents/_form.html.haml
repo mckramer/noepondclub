@@ -1,0 +1,31 @@
+= form_for @independent do |f|
+  -if @independent.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@independent.errors.count, "error")} prohibited this independent from being saved:"
+      %ul
+        - @independent.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name_first
+    = f.text_field :name_first
+  .field
+    = f.label :name_middle
+    = f.text_field :name_middle
+  .field
+    = f.label :name_last
+    = f.text_field :name_last
+  .field
+    = f.label :name_suffix
+    = f.text_field :name_suffix
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :member
+    = f.text_field :member
+  .actions
+    = f.submit 'Save'

@@ -1,5 +1,7 @@
 Noepond::Application.routes.draw do
   
+  resources :posts
+
   # Data
   # > Tennis
   # resources :tennis_courts
@@ -11,11 +13,12 @@ Noepond::Application.routes.draw do
   # > Camp
   
   # Members
-  devise_for :members, :path => 'accounts'
+  devise_for :members, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
   resources :members do
+    resources :independents
     resources :dependents
-    # resources :tennis_reservations
-    # > member, court, date, start_time, end_time
+    resources :tennis_reservations, :path => 'reservations/tennis'
+    # > member, court, date, start_at, end_at
     # resources :paddle_reservations
     # resources :tennis_lessons
     # > member, instructor, date & time
@@ -24,10 +27,11 @@ Noepond::Application.routes.draw do
   end
   
   # Employees
-  # > type = { lifeguard, office, manager, maintainance, tennis, paddle, camp }, date_started
-  # devise_for :employees, :path => 'workers'
+  # > type = { lifeguard, office, manager, maintainance, tennis, paddle, camp }, start_at, end_at
+  # devise_for :employees, :path => 'staff'
   # resources :employees do
-  # 
+  #   resources :bio
+  #   > hometown, highschool, college
   # end
   
   # Static pages
@@ -35,6 +39,7 @@ Noepond::Application.routes.draw do
   match 'about/family' => 'page#family'
   match 'about/history' => 'page#history'
   match 'contact' => 'page#contact'
+  match 'current' => 'page#current'
   match 'directions' => 'page#directions'
   match 'employment' => 'page#employment'
   match 'prospective' => 'page#prospective'
