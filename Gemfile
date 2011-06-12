@@ -20,16 +20,19 @@ gem 'haml'
 gem 'haml-rails'
 gem 'sass'
 
-# Social
+# External APIs
+# > Social
 gem 'twitter'
-
-# Weather
+# > Weather
 gem 'yahoo-weather'
+
+# Model attachments
+gem 'acts_as_commentable'
+# gem 'paperclip', "~> 2.3" # File attachments for ActiveRecord
 
 # Other
 gem 'jquery-rails'
 gem 'faker' # Forced here due to heroku needing it as production
-# gem 'paperclip', "~> 2.3" # File attachments for ActiveRecord
 
 # Deploy with Capistrano
 # gem 'capistrano'

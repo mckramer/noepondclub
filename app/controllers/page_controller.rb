@@ -1,4 +1,5 @@
 class PageController < ApplicationController
+  before_filter :authenticate_member!, :only => [:current]
   def home
     @post = Post.last
   end

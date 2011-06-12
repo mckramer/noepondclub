@@ -7,32 +7,47 @@ label {
 label.hint {
   font-size: 70%; }
 
-input, textarea, select {
+input[type=email],
+input[type=text],
+textarea,
+select {
   border-radius: 3px;
   border: none;
   font-size: inherit;
   font-family: inherit;
   padding: 3px;
-  width: 350px; }
+  width: 99%; }
+
+textarea {
+  height: 100px; }
 
 input[type=submit], input[type=button] {
+  background-color: lightgray;
+  border-radius: 3px;
+  border: none;
   cursor: pointer;
-  padding: 5px 10px; }
+  font-size: inherit;
+  font-family: inherit;
+  margin: 5px 0;
+  padding: 5px 10px;
+  width: none; }
 
 input[type=submit]:hover {
   background-color: teal;
   color: white; }
 
 /* Tables styles */
-form table tbody tr th, form table tbody tr td {
-  padding: 3px 5px; }
-form table tbody tr th {
-  background-color: lightgray;
-  text-align: left; }
-form table tbody tr td {
-  background-color: white; }
-form table input {
-  border: 1px solid lightgray; }
+form table {
+  width: 100%; }
+  form table tbody tr th, form table tbody tr td {
+    padding: 5px 8px; }
+  form table tbody tr th {
+    background-color: lightgray;
+    text-align: left; }
+  form table tbody tr td {
+    background-color: white; }
+  form table input, form table textarea {
+    border: 1px solid lightgray; }
 
 /* Ninja styles */
 p > input[type=radio],

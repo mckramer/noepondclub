@@ -1,6 +1,8 @@
 Noepond::Application.routes.draw do
   
   resources :posts
+  
+  resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
 
   # Data
   # > Tennis

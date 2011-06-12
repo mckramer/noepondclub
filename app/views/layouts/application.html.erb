@@ -127,20 +127,23 @@
       </nav>
       <div class="social">
         <h1><img src="http://si0.twimg.com/images/dev/cms/intents/bird/bird_blue/bird_16_blue.png" />&nbsp;&nbsp;Twitter</h1>
+        <% if @no_tweets %>
+        <h2>Follow <a href="https://twitter.com/#!/NoePondClub">Noe Pond</a></h2>
+        <% else %>
         <h2>From <a href="https://twitter.com/#!/NoePondClub">Noe Pond</a></h2>
         <ol>
         <% @npc_tweets.each do |tweet| %>
           <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
-        <% if @mentions_tweets.nil? %>
-        <% else %>
+        <% if @mentions_tweets %>
         <h2>Recent mentions</h2>
         <ol>
         <% @mentions_tweets.each do |tweet| %>
           <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
+        <% end %>
         <% end %>
       </div>
       <div class="weather">

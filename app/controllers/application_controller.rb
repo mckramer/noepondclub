@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   def get_tweets
     @npc_tweets = Twitter::Search.new.from("NoePondClub").per_page(3).fetch
     @mention_tweets = Twitter::Search.new.mentioning("NoePondClub").per_page(3).fetch
+    
+    # Handle problems with Twitter
+    rescue Twitter::ServiceUnavailable then @no_tweets = true
   end
   
   def get_weather

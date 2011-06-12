@@ -1,0 +1,13 @@
+.post
+  %h2= link_to post.title, post
+  .author
+    = "Posted on #{post.created_at.strftime("%B #{post.created_at.day.ordinalize}, %I:%M %p")}"
+    by 
+    = link_to "Max Kramer", "https://twitter.com/maxckramer"
+  - if post.body.length < 100
+    %p= post.body
+  - else
+    %p= "#{post.body[0,100]} ..."
+  .readmore
+    = link_to "Read more", post
+    = link_to "Comment", post

@@ -36,21 +36,22 @@
   %section
     %h2 Welcome to the Noe Pond Club
     %p The Noe Pond Club was founded in 1955 as a member-owned, non-profit family swim club by Nancy Tasman Brower and Bailey Brower Jr. The three-and-a-half-acre pond, the Club's hallmark, has been an important part of the community and Brower family history since the early 1800's. The pond was created for the family's large dairy and fruit farm. During the winters, the pond was the local source of ice.
-    %div.featured
-      %h2 Last update
-      .post
-        %h3= link_to @post.title, @post
-        .author
-          = "Posted on #{@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %I:%M %p")}"
-          by 
-          = link_to "Max Kramer", "https://twitter.com/maxckramer"
-        - if @post.body.length < 100
-          %p= @post.body
-        - else
-          %p= "#{@post.body[0,100]} ..."
-        .readmore
-          = link_to "Read more", @post
-          = link_to "Comment", @post
+    - if @post
+      %div.featured
+        %h2 Last update
+        .post
+          %h3= link_to @post.title, @post
+          .author
+            = "Posted on #{@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %I:%M %p")}"
+            by 
+            = link_to "Max Kramer", "https://twitter.com/maxckramer"
+          - if @post.body.length < 100
+            %p= @post.body
+          - else
+            %p= "#{@post.body[0,100]} ..."
+          .readmore
+            = link_to "Read more", @post
+            = link_to "Comment", @post
     %h2 What's going on today around the club?
     %table.events{:style=>"background-color:white;margin:0;padding:0px;width:100%;border-collapse:collapse;"}
       %thead

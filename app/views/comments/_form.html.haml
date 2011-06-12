@@ -1,0 +1,20 @@
+= form_for @comment do |f|
+  -if @post.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+  %table
+    %tbody
+      %tr
+        %th= f.label :member, "Author"
+        %td
+          = link_to current_member.name, current_member
+          = f.hidden_field :member
+      %tr
+        %th= f.label :comment
+        %td= f.text_area :comment, :rows => 4
+  = f.hidden_field :commentable_id
+  = f.hidden_field :commentable_type
+  = f.submit "Post comment"

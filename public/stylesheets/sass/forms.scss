@@ -7,20 +7,30 @@ label {
 label.hint {
   font-size: 70%;
 }
-input, textarea, select {
+input[type=email], 
+input[type=text], 
+textarea, 
+select {
   border-radius: 3px;
   border: none;
   font-size: inherit;
   font-family: inherit;
   padding: 3px;
-  width: 350px;
+  width: 99%;
 }
 textarea {
-
+  height: 100px;
 }
 input[type=submit], input[type=button] {
+  background-color: lightgray;
+  border-radius: 3px;
+  border: none;
   cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  margin: 5px 0;
   padding: 5px 10px;
+  width: none;
 }
 input[type=submit]:hover {
   background-color: teal;
@@ -29,13 +39,14 @@ input[type=submit]:hover {
 /* Tables styles */
 
 form table {
+  width: 100%;
   thead {
   
   }
   tbody {
     tr {
       th, td {
-        padding: 3px 5px;
+        padding: 5px 8px;
       }
       th {
         background-color: lightgray;
@@ -49,7 +60,7 @@ form table {
   tfoot {
   
   }
-  input {
+  input, textarea {
     border: 1px solid lightgray;
   }
 }

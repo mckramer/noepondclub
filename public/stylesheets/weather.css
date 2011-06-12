@@ -1,7 +1,6 @@
 /***************************
  * Weather 
  ***************************/
-/* Mix-ins */
 /* Tornado, tropical storm, hurricane */
 body.weather-0,
 body.weather-1,
@@ -10,6 +9,21 @@ body.weather-2 {
   /*background-image: url('');*/
   background-position: 10px 25px;
   background-repeat: no-repeat; }
+  body.weather-0 > aside .weather .current-conditions,
+  body.weather-1 > aside .weather .current-conditions,
+  body.weather-2 > aside .weather .current-conditions {
+    /*background-image: url('');*/
+    background-position: 10px;
+    background-repeat: no-repeat;
+    background-size: 32px; }
+
+.forecast > .weather-0,
+.forecast > .weather-1,
+.forecast > .weather-2 {
+  /*background-image: url('');*/
+  background-position: 10px;
+  background-repeat: no-repeat;
+  background-size: 32px; }
 
 /* Thunderstorms */
 body.weather-3,
@@ -55,6 +69,21 @@ body.weather-7 {
   background-image: url("http://maxkramer.me/images/weather/Rain_Or_Snow.png");
   background-position: 10px 25px;
   background-repeat: no-repeat; }
+  body.weather-5 > aside .weather .current-conditions,
+  body.weather-6 > aside .weather .current-conditions,
+  body.weather-7 > aside .weather .current-conditions {
+    background-image: url("http://maxkramer.me/images/weather/Rain_Or_Snow.png");
+    background-position: 10px;
+    background-repeat: no-repeat;
+    background-size: 32px; }
+
+.forecast > .weather-5,
+.forecast > .weather-6,
+.forecast > .weather-7 {
+  background-image: url("http://maxkramer.me/images/weather/Rain_Or_Snow.png");
+  background-position: 10px;
+  background-repeat: no-repeat;
+  background-size: 32px; }
 
 /* Freezing rain or drizzle, or sleet */
 body.weather-8,
@@ -64,6 +93,21 @@ body.weather-18 {
   background-image: url("http://maxkramer.me/images/weather/Freezing_Rain.png");
   background-position: 10px 25px;
   background-repeat: no-repeat; }
+  body.weather-8 > aside .weather .current-conditions,
+  body.weather-10 > aside .weather .current-conditions,
+  body.weather-18 > aside .weather .current-conditions {
+    background-image: url("http://maxkramer.me/images/weather/Freezing_Rain.png");
+    background-position: 10px;
+    background-repeat: no-repeat;
+    background-size: 32px; }
+
+.forecast > .weather-8,
+.forecast > .weather-9,
+.forecast > .weather-10 {
+  background-image: url("http://maxkramer.me/images/weather/Freezing_Rain.png");
+  background-position: 10px;
+  background-repeat: no-repeat;
+  background-size: 32px; }
 
 /* Rain */
 body.weather-9,
@@ -82,6 +126,15 @@ body.weather-40 {
     background-position: 10px;
     background-repeat: no-repeat;
     background-size: 32px; }
+
+.forecast > .weather-9,
+.forecast > .weather-11,
+.forecast > .weather-12,
+.forecast > .weather-40 {
+  background-image: url("http://maxkramer.me/images/weather/Rain.png");
+  background-position: 10px;
+  background-repeat: no-repeat;
+  background-size: 32px; }
 
 /* Snow */
 body.weather-13,
@@ -287,7 +340,7 @@ body.weather-32,
 body.weather-34,
 body.weather-36 {
   background-color: #86C9EF;
-  background-image: url("http://maxkramer.me/images/bg/sun2-165.png");
+  background-image: url("http://maxkramer.me/images/weather/Sunny.png");
   background-position: 10px 25px;
   background-repeat: no-repeat; }
   body.weather-32 > aside .weather .current-conditions,

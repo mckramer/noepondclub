@@ -1,0 +1,11 @@
+%h3 Comments
+- if @comments.empty?
+  %p 
+    %i No comments
+- else
+  - @comments.each do |comment|
+    %ol.comments
+      %li= comment.comment
+- if member_signed_in?
+  %h3 Make a comment
+  = render 'comments/form'

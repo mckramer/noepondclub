@@ -575,3 +575,18 @@ table.reservations {
   
   }
 }
+.links {
+  background-color: white;
+  float: right;
+  list-style-type: none;
+  margin: 25px 0;
+  padding: 10px;
+  li {
+    display: inline;
+    padding: 5px;
+  }
+  li + li {
+    border-left: 1px solid gray;
+    padding-left: 8px;
+  }
+}
