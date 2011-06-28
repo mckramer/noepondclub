@@ -1,5 +1,8 @@
-%h1 New tennis_reservation
-
-= render 'form'
-
-= link_to 'Back', tennis_reservations_path
+- content_for :title, "Reservations"
+- content_for :subtitle, "New tennis reservation"
+%article
+  %section
+    .for= "#{@member.name} (#{@member.badge})"
+    .clear
+    = render 'form'
+    %p= link_to 'Back', member_tennis_reservations_path(@member)

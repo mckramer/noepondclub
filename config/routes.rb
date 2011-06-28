@@ -19,7 +19,7 @@ Noepond::Application.routes.draw do
   resources :members do
     resources :independents
     resources :dependents
-    resources :tennis_reservations, :path => 'reservations/tennis'
+    resources :tennis_reservations, :path => 'reservations/tennis', :only => [:index, :new, :create, :show, :destroy]
     # > member, court, date, start_at, end_at
     # resources :paddle_reservations
     # resources :tennis_lessons
@@ -45,6 +45,15 @@ Noepond::Application.routes.draw do
   match 'directions' => 'page#directions'
   match 'employment' => 'page#employment'
   match 'prospective' => 'page#prospective'
+  match 'prospective/events' => 'page#prospective-events'
+  match 'prospective/paddle' => 'page#prospective-paddle'
+  match 'prospective/winter' => 'page#prospective-winter'
+  match 'prospective/emblems' => 'page#prospective-emblems'
+  match 'prospective/teams/swimming' => 'page#prospective-teams-swimming'
+  match 'prospective/teams/diving' => 'page#prospective-teams-diving'
+  match 'prospective/teams/tennis' => 'page#prospective-teams-tennis'
+  match 'prospective/teams/watershow' => 'page#prospective-teams-watershow'
+  match 'prospective/teams/paddle' => 'page#prospective-teams-paddle'
   
   # Application root
   root :to => "page#home"

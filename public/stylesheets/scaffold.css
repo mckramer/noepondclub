@@ -8,7 +8,12 @@ div.field, div.actions {
 }
 
 #notice {
+  background-color: white;
+  border-color: 1px solid green;
+  border-radius: 5px;
   color: green;
+  margin: 0px 20px;
+  padding: 10px;
 }
 
 .field_with_errors {

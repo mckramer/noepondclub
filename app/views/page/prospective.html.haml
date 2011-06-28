@@ -1,45 +1,35 @@
 - content_for :title, "Prospective"
 - content_for :subtitle, "Prospective members"
-- content_for :intro do
-  #news
-    %h1 Programs
-    %div
-      %a{:href => root_url}
-        %img{:src => "http://maxkramer.me/projects/npc/images/icon/silhouette/swimming.png"}
-        Swim team
-    %div
-      %a{:href => "#"}
-        %img{:src => "http://maxkramer.me/projects/npc/images/icon/silhouette/diving.png"}
-        Diving team
-    %div
-      %a{:href => "#sdfsf"} 
-        %img{:src => "http://maxkramer.me/projects/npc/images/icon/silhouette/tennis.png"} 
-        Tennis team
-    %div
-      %a{:href => root_url}
-        %img{:src => "http://maxkramer.me/projects/npc/images/icon/silhouette/swimming.png"}
-        Kids' Program
-  #slider
-    %ul#sliderContent
-      %li.sliderImage{:style => "display: block;"}
-        %img{ :src=> "http://maxkramer.me/projects/npc/images/slider/01.jpg" }
-        %span.bottom{ :style => "display: block;"}
-          %h1 Beach
-          The beautiful beach and water.
-      %li.sliderImage{:style => "display: none;"}
-        %img{ :src=> "http://maxkramer.me/projects/npc/images/slider/02.jpg" }
-        %span.bottom{ :style => "display: none;"}
-          %h1 Waves in the water
-          Come swim in the water.  Only small waves.
-      %li.sliderImage{:style => "display: none;"}
-        %img{ :src=> "http://maxkramer.me/projects/npc/images/slider/03.jpg" }
-        %span.bottom{ :style => "display: none;"}
-          %h1 Sunset
-          View a beautiful sunset across the water at night.
-      %div{ :class => "clear sliderImage" }
-
-
+- content_for :intro do 
+  = render 'prospective-intro'
 %article
   %section
-    %h2 Welcome to Noe Pond Club
-    %p 
+    %h2 Welcome
+    %p Noe Pond Club is the bestest.
+    %h2 What makes this place special?
+    %ul
+      %li
+        %a{:href => "/prospective/emblems"} Emblem system
+      %li
+        %a{:href => "/about/family"} Family
+    %h2 Summer activities
+    %ul
+      %li
+        %a{:href => "/prospective/teams/swimming"} Swim team
+      %li
+        %a{:href => "/prospective/teams/diving"} Diving team
+      %li
+        %a{:href => "/prospective/teams/tennis"} Tennis team
+      %li
+        %a{:href => "/prospective/teams/watershow"} Water show
+      %li
+        %a{:href => "/prospective/events"} Special events
+    %h2 Winter activities
+    %ul
+      %li
+        %a{:href => "/prospective/winter"} Skating and holidays
+      %li
+        %a{:href => "/prospective/paddle"} Paddle tennis
+      %li
+        %a{:href => "/prospective/teams/paddle"} Paddle team
+      

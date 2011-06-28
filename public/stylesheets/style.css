@@ -213,7 +213,7 @@ body > aside .social ol {
   overflow: hidden; }
   body > aside .social ol li {
     background-color: white;
-    border-bottom: 1px dashed black;
+    border-top: 1px dashed black;
     min-height: 50px;
     padding: 4px; }
     body > aside .social ol li img {
@@ -229,6 +229,8 @@ body > aside .social ol {
       text-decoration: none; }
   body > aside .social ol li:hover {
     background-color: lightgray; }
+  body > aside .social ol li.first {
+    border-top: none; }
 body > aside .weather > div {
   background-color: white;
   border-radius: 5px;
@@ -302,6 +304,14 @@ a img {
     padding-top: 0px;
     margin-top: 0px;
     border-bottom: 4px gray double; }
+  #content article h3 {
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 1px gray solid; }
+  #content article h4 {
+    font-size: 17px;
+    margin: 5px 25px;
+    text-align: center; }
   #content article p {
     font-size: 110%; }
   #content article h1 + p:first-letter {
@@ -439,7 +449,7 @@ table.reservations {
   overflow: hidden;
   width: 90%; }
   table.reservations thead {
-    background-color: lightgray; }
+    background-color: lightgray !important; }
   table.reservations tbody {
     background-color: white; }
     table.reservations tbody tr th, table.reservations tbody tr td {
@@ -447,15 +457,19 @@ table.reservations {
     table.reservations tbody tr td {
       text-align: center; }
 
-.links {
+ol.links {
   background-color: white;
   float: right;
   list-style-type: none;
   margin: 25px 0;
   padding: 10px; }
-  .links li {
+  ol.links li {
     display: inline;
     padding: 5px; }
-  .links li + li {
+  ol.links li + li {
     border-left: 1px solid gray;
     padding-left: 8px; }
+
+ol.requirements,
+ol.privileges {
+  margin: 5px 50px; }

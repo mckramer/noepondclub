@@ -1,25 +1,67 @@
-= form_for @tennis_reservation do |f|
+= form_for [@member, @tennis_reservation] do |f|
   -if @tennis_reservation.errors.any?
     #error_explanation
       %h2= "#{pluralize(@tennis_reservation.errors.count, "error")} prohibited this tennis_reservation from being saved:"
       %ul
         - @tennis_reservation.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :member
-    = f.text_field :member
-  .field
-    = f.label :date
-    = f.date_select :date
-  .field
-    = f.label :start_at
-    = f.text_field :start_at
-  .field
-    = f.label :end_at
-    = f.text_field :end_at
-  .field
-    = f.label :court
-    = f.text_field :court
+  %fieldset
+    %legend 1. What day?
+    .field
+      = f.label :date
+      = f.select :date, options_for_select(days)
+  %fieldset
+    %legend 2. When?
+    .field
+      = f.label :start_at, "Available start times"
+      = f.select :start_at, options_for_select(times)
+    .field
+      = f.label :length, "Length of reservation"
+      %p
+        = f.radio_button :length, 59, :checked => true
+        = f.label :length, "60 minutes", :value => 59
+  %fieldset
+    %legend 3. What court?
+    .field
+      %table#court{:style => "text-align:center;vertical-align:middle;"}
+        %tbody
+          %tr
+            %th Uppers (Har-tru)
+            %td.available
+              = f.radio_button :court, 1
+              = f.label :court, "1", :value => 1
+            %td.available
+              = f.radio_button :court, 2
+              = f.label :court, "2", :value => 2
+            %td.available
+              = f.radio_button :court, 3
+              = f.label :court, "3", :value => 3
+            %td.available
+              = f.radio_button :court, 4
+              = f.label :court, "4", :value => 4
+          %tr
+            %th Mid (Turf)
+            %td
+            %td.unavailable
+              = f.radio_button :court, 5, :disabled => true
+              = f.label :court, "Reserved", :value => 5
+            %td.available
+              = f.radio_button :court, 6
+              = f.label :court, "6", :value => 6
+            %td
+          %tr
+            %th Lowers (Har-tru)
+            %td.available
+              = f.radio_button :court, 7
+              = f.label :court, "7", :value => 7
+            %td.available
+              = f.radio_button :court, 8
+              = f.label :court, "8", :value => 8
+            %td.available
+              = f.radio_button :court, 9
+              = f.label :court, "9", :value => 9
+            %td.available
+              = f.radio_button :court, 10
+              = f.label :court, "10", :value => 10
   .actions
     = f.submit 'Save'

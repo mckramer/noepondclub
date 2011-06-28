@@ -16,6 +16,7 @@ class MembersController < ApplicationController
   def show
     if Member.exists?(params[:id])
       @member = Member.find(params[:id])
+      @tennis_reservations = @member.tennis_reservations.reject {|reservation| reservation.date < Date.today}
       respond_to do |format|
         format.html
         format.xml  { render :xml => @user }

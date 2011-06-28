@@ -1,37 +1,38 @@
 - content_for :title, "Tennis reservations"
 %article
   %section
+    - if notice
+      %p#notice= notice
     %p 
       You can view existing and past court reservations below.  If you are unable to make a reservation, please remove the reservation below.  You can reserve a court 
       = link_to "here.", new_member_tennis_reservation_path(@member)
     %h2 Current reservations
-    - if @tennis_reservations.nil?
+    - if @current_reservations.empty?
       %p You do not have any upcoming reservations.
     - else
-      %table
+      %table{:class => "reservations"}
         %thead
           %tr
             %th Date
             %th Start
             %th End
             %th Court
-            %th Edit
+            %th Surface
             %th Delete
         %tbody
-          - @tennis_reservations.each do |tennis_reservation|
+          - @current_reservations.each do |tennis_reservation|
             %tr
-              %td= tennis_reservation.member
-              %td= tennis_reservation.date
-              %td= tennis_reservation.start_at
-              %td= tennis_reservation.end_at
+              %td= tennis_reservation.date_text
+              %td= tennis_reservation.start_at_text
+              %td= tennis_reservation.end_at_text
               %td= tennis_reservation.court
-              %td= link_to "Edit", edit_member_tennis_reservation_path(@member, tennis_reservation)
-              %td= link_to "Delete", edit_member_tennis_reservation_path(@member, tennis_reservation)
+              %td= tennis_reservation.surface
+              %td= link_to "Delete", [@member, tennis_reservation], :method => :delete, :confirm => "Are you sure?"
     %h2 Past reservations
-    - if @tennis_reservations.nil?
+    - if @old_reservations.empty?
       %p You do not have any past reservations.
     - else
-      %table
+      %table{:class => "reservations"}
         %thead
           %tr
             %th Date
@@ -39,11 +40,10 @@
             %th End
             %th Court
         %tbody
-          - @tennis_reservations.each do |tennis_reservation|
+          - @old_reservations.each do |tennis_reservation|
             %tr
-              %td= tennis_reservation.member
-              %td= tennis_reservation.date
-              %td= tennis_reservation.start_at
-              %td= tennis_reservation.end_at
-              %td= tennis_reservation.court
+              %td= tennis_reservation.date_text
+              %td= tennis_reservation.start_at_text
+              %td= tennis_reservation.end_at_text
+              %td= "#{tennis_reservation.court} (#{tennis_reservation.surface})"
     %p= link_to 'Make new court reservation for tennis', new_member_tennis_reservation_path(@member)

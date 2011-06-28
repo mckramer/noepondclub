@@ -1,21 +1,23 @@
-%p#notice= notice
-
-%p
-  %b Member:
-  = @tennis_reservation.member
-%p
-  %b Date:
-  = @tennis_reservation.date
-%p
-  %b Start at:
-  = @tennis_reservation.start_at
-%p
-  %b End at:
-  = @tennis_reservation.end_at
-%p
-  %b Court:
-  = @tennis_reservation.court
-
-= link_to 'Edit', edit_tennis_reservation_path(@tennis_reservation)
-\|
-= link_to 'Back', tennis_reservations_path
+- content_for :title, "Reservations"
+- content_for :subtitle, "Tennis reservation"
+%article
+  %section
+    - if notice
+      %p#notice= notice
+    %p
+      %b Member:
+      = @tennis_reservation.member.display
+    %p
+      %b Date:
+      = @tennis_reservation.date_text
+    %p
+      %b Start at:
+      = @tennis_reservation.start_at_text
+    %p
+      %b End at:
+      = @tennis_reservation.end_at_text
+    %p
+      %b Court:
+      = @tennis_reservation.court
+    %ol.links
+      = link_to 'Back', member_tennis_reservations_path(@member)

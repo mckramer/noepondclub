@@ -37,25 +37,29 @@
             %td= "#{birthday.strftime("%m/%d/%y")} (#{age})"
             %td= ['Red frog', 'Blue frog', 'Green fish', 'Gold fish'].sample
     %h2 Current reservations
-    %h3 Tennis
-    %table{:class => "reservations"}
-      %thead
-        %tr
-          %th Date
-          %th Time
-          %th Court
-          %th Surface
-          %th 
-      %tbody
-        - 5.times do |index|
+    %h3= link_to "Tennis", member_tennis_reservations_path(@member)
+    - if @tennis_reservations.empty?
+      %p 
+        There are no current reservations.
+        = link_to "&rarr;&nbsp;Make a new tennis reservation.".html_safe, new_member_tennis_reservation_path(@member)
+    - else
+      %table{:class => "reservations"}
+        %thead
           %tr
-            - current_time = Time.now
-            %td= (current_time - index.days).strftime("%B %d")
-            %td= "#{current_time.strftime("%I:%M")}-#{(current_time + 2.hours).strftime("%I:%M %p").sub(/(AM|PM)/) { |m| m.downcase }}"
-            %td= court = rand(10) + 1
-            %td= if court < 5 || court > 6; "Hard-tru"; else; "Turf"; end;
-            %td= link_to "Edit or cancel", root_path
-    %p= link_to "View all tennis reservations", member_tennis_reservations_path(@member)
+            %th Date
+            %th Time
+            %th Court
+            %th Surface
+            %th 
+        %tbody
+          - @tennis_reservations.each do |reservation|
+            %tr
+              %td= reservation.date.strftime("%B %d")
+              %td= "#{reservation.start_at_text}-#{reservation.end_at_text}"
+              %td= reservation.court
+              %td= reservation.surface
+              %td= link_to "Edit or cancel", root_path
+      %p= link_to "View all tennis reservations", member_tennis_reservations_path(@member)
     %h2 Lessons
     %h3 Tennis
     %table{:class => "reservations"}

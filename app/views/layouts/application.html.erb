@@ -9,10 +9,10 @@
     <meta name="google-site-verification" content="">
     <meta name="author" content="Max Kramer (maxkramer.me)">
     <meta name="Copyright" content="Copyright Max Kramer and Noe Pond Club. All Rights Reserved.">
+    <% if current_page?(root_url) %>
     <meta name="DC.title" content="Noe Pond Club">
     <meta name="DC.subject" content="Private swimming, tennis, and paddle club in Chatham, NJ.">
     <meta name="DC.creator" content="Max Kramer (maxkramer.me)">
-    <% if current_page?(root_url) %>
     <meta property="og:title" content="Noe Pond Club"/>
     <meta property="og:type" content="movie"/>
     <meta property="og:url" content="http://www.noepondclub.org/" />
@@ -38,7 +38,9 @@
     <%= csrf_meta_tag %>
   </head>
   <body class="<%= @body_classes.join(' ') %>">
-    <div id="current-weather" style="position:absolute; top:5px; left:5px; background-color: white; padding: 7px 10px; border-radius:10px; z-index:-99; font-size:80%;">Air: <%= @weather.condition.temp %>&deg;<%= @weather.units.temperature %>&emsp;Water: <%= render 'shared/condition-water' %></div>
+    <div id="current-weather" style="position:absolute; top:5px; left:5px; background-color: white; padding: 7px 10px; border-radius:10px; z-index:-99; font-size:80%;">
+      Air: <%= @weather.condition.temp %>&deg;<%= @weather.units.temperature %>&emsp;Water: <%= render 'shared/condition-water' %>
+    </div>
     <% if @weather_warning %>
     <div id="info">
       <%= render 'shared/caution-thunderstorms' if @weather_warning === :thunderstorms %>
@@ -56,7 +58,7 @@
     </nav>
     <header>
       <hgroup>
-        <h1>NPC</h1> 
+        <h1>NPC</h1>
 				<h2><%= link_to "Noe Pond Club", root_path %></h2> 
 				<h3>the <%= link_to "family", "/about/family" %></a> club since <%= link_to "1955", "/about/history" %></h3>
       </hgroup>
@@ -101,13 +103,12 @@
     </div>
     <aside>
       <nav>
-        <h1><img width="16px" src="http://www.softicons.com/download/system-icons/codex-icons-by-ilia-draznin/png/48/navigation.png" />&nbsp;&nbsp;Navigation</h1> 
+        <h1><img width="16px" src="http://maxkramer.me/images/navigation.png" />&nbsp;&nbsp;Navigation</h1> 
         <ul> 
           <li><%= link_to "Home", root_path %></li> 
           <li>
-            <%= link_to "Current members", root_path, :class => "locked" %>
-            <% if current_member.nil? %>
-            <% else %>
+            <%= link_to "Current members", "/current", :class => "locked" %>
+            <% if current_member.nil? == false %>
             <ul>
               <li><%= link_to "Tennis court reservations", "/members/1/reservations/tennis", :class => "locked" %></li>
               <% if true # (8..12).include?(Time.now.month) %>
@@ -115,7 +116,7 @@
               <% end %>
               <li><%= link_to "Tennis lessons", "/members/1/lessons/tennis", :class => "locked" %></li>
               <li><%= link_to "Swim lessons", "/members/1/lessons/swimming", :class => "locked" %></li>
-              <li><%= link_to "Kids' Program", "/kidsprogram", :class => "locked" %></li>
+              <li><%= link_to "Kids' Program", root_path, :class => "locked" %></li>
             </ul>
             <% end %>
           </li>
@@ -132,22 +133,24 @@
         <% else %>
         <h2>From <a href="https://twitter.com/#!/NoePondClub">Noe Pond</a></h2>
         <ol>
+        <% first = true %>
         <% @npc_tweets.each do |tweet| %>
-          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
+          <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
         <% if @mentions_tweets %>
         <h2>Recent mentions</h2>
         <ol>
+        <% first = true %>
         <% @mentions_tweets.each do |tweet| %>
-          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
+          <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
         <% end %>
         <% end %>
       </div>
       <div class="weather">
-        <h1><img width="16px" src="http://www.androidsoftware.us/uploads/allimg/110417/2_041H153411001.png" />&nbsp;&nbsp;Weather</h1>
+        <h1><img width="16px" src="http://maxkramer.me/images/weather.png" />&nbsp;&nbsp;Weather</h1>
         <h2>Current conditions</h2>
         <div class="current-conditions">
           <span class="temp">

@@ -7,7 +7,7 @@ body.weather-1,
 body.weather-2 {
   background-color: lightgray;
   /*background-image: url('');*/
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-0 > aside .weather .current-conditions,
   body.weather-1 > aside .weather .current-conditions,
@@ -35,7 +35,7 @@ body.weather-45,
 body.weather-47 {
   background-color: #669;
   background-image: url("http://maxkramer.me/images/weather/Thunderstorms.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-3 > aside .weather .current-conditions,
   body.weather-4 > aside .weather .current-conditions,
@@ -67,7 +67,7 @@ body.weather-6,
 body.weather-7 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Rain_Or_Snow.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-5 > aside .weather .current-conditions,
   body.weather-6 > aside .weather .current-conditions,
@@ -91,7 +91,7 @@ body.weather-10,
 body.weather-18 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Freezing_Rain.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-8 > aside .weather .current-conditions,
   body.weather-10 > aside .weather .current-conditions,
@@ -116,7 +116,7 @@ body.weather-12,
 body.weather-40 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Rain.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-9 > aside .weather .current-conditions,
   body.weather-11 > aside .weather .current-conditions,
@@ -147,7 +147,7 @@ body.weather-43,
 body.weather-46 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Snow.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-13 > aside .weather .current-conditions,
   body.weather-14 > aside .weather .current-conditions,
@@ -172,7 +172,7 @@ body.weather-46 {
 .forecast > .weather-46 {
   background-color: #fff;
   background-image: url("http://maxkramer.me/images/weather/Snow.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
 
 /* Hail */
@@ -180,7 +180,7 @@ body.weather-17,
 body.weather-35 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Freezing_Rain.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-17 > aside .weather .current-conditions,
   body.weather-35 > aside .weather .current-conditions {
@@ -203,7 +203,7 @@ body.weather-21,
 body.weather-22 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Fog.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-19 > aside .weather .current-conditions,
   body.weather-20 > aside .weather .current-conditions,
@@ -228,7 +228,7 @@ body.weather-23,
 body.weather-24 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Fog.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-23 > aside .weather .current-conditions,
   body.weather-24 > aside .weather .current-conditions {
@@ -248,7 +248,7 @@ body.weather-24 {
 body.weather-25 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Flurries.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-25 > aside .weather .current-conditions {
     background-image: url("http://maxkramer.me/images/weather/Flurries.png");
@@ -282,7 +282,7 @@ body.weather-44 {
 body.weather-30 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Mostly_Sunny.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-30 > aside .weather .current-conditions {
     background-image: url("http://maxkramer.me/images/weather/Mostly_Sunny.png");
@@ -300,7 +300,7 @@ body.weather-30 {
 body.weather-28 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Mostly_Cloudy.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-28 > aside .weather .current-conditions {
     background-image: url("http://maxkramer.me/images/weather/Mostly_Cloudy.png");
@@ -319,7 +319,7 @@ body.weather-27,
 body.weather-29 {
   background-color: #669;
   background-image: url("http://maxkramer.me/images/weather/Cloudy_Period.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-27 > aside .weather .current-conditions,
   body.weather-29 > aside .weather .current-conditions {
@@ -341,7 +341,7 @@ body.weather-34,
 body.weather-36 {
   background-color: #86C9EF;
   background-image: url("http://maxkramer.me/images/weather/Sunny.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-32 > aside .weather .current-conditions,
   body.weather-34 > aside .weather .current-conditions,
@@ -364,7 +364,7 @@ body.weather-31,
 body.weather-33 {
   background-color: #003;
   background-image: url("http://maxkramer.me/images/weather/Clear.png");
-  background-position: 10px 25px;
+  background-position: 10px 35px;
   background-repeat: no-repeat; }
   body.weather-31 > aside .weather .current-conditions,
   body.weather-33 > aside .weather .current-conditions {

@@ -7,8 +7,18 @@ label {
 label.hint {
   font-size: 70%;
 }
+fieldset {
+  border: 2px groove white;
+  margin: 10px 0;
+}
+legend {
+  background-color: white;
+  padding: 5px 10px;
+}
 input[type=email], 
-input[type=text], 
+input[type=text],
+input[type=number],
+input[type=password],
 textarea, 
 select {
   border-radius: 3px;
@@ -60,10 +70,56 @@ form table {
   tfoot {
   
   }
-  input, textarea {
-    border: 1px solid lightgray;
+  input, textarea, select {
+    border: 1px solid lightgray !important;
   }
 }
+
+form table#court {
+  tbody {
+    tr {
+      td {
+        background: white;
+        border: 3px solid white;
+        color: white;
+        height: 110px;
+        width: 75px;
+        label {
+          font-size: 180%;
+          height: 70px;
+        }
+      }
+      td.available {
+        background-image: url('http://maxkramer.me/images/tennis_court.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 91px 120px;
+      }
+      td.available:hover {
+        border-color: yellow;
+      }
+      td.unavailable {
+        background-image: url('http://maxkramer.me/images/tennis_court_reserved.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 91px 120px;
+        label {
+          font-size: 95%;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+.for {
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  margin-right: 10px;
+  padding: 10px;
+}
+
 
 
 /* Ninja styles */

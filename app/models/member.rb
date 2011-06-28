@@ -17,8 +17,20 @@ class Member < ActiveRecord::Base
   
   validates_uniqueness_of :badge
   
+  #def to_param
+  #  if badge.nil? || badge <= 0
+  #    "asdasd"
+  #  else
+  #    badge
+  #  end
+  #end
+  
   def self.membership_types
     return ['family', 'single', 'senior', 'lifetime']
+  end
+  
+  def display
+    return "#{name} (##{badge})"
   end
   
 end

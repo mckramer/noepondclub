@@ -1,7 +1,11 @@
-%h1 Editing tennis_reservation
-
-= render 'form'
-
-= link_to 'Show', @tennis_reservation
-\|
-= link_to 'Back', tennis_reservations_path
+- content_for :title, "Reservations"
+- content_for :subtitle, "Edit tennis reservation"
+%article
+  %section
+    .for= "#{@member.name} (#{@member.badge})"
+    .clear
+    = render 'form'
+    %p
+      = link_to 'Show', member_tennis_reservation_path(@member, @tennis_reservation)
+      \|
+      = link_to 'Back', member_tennis_reservations_path(@member)
