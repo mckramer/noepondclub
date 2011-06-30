@@ -1,3 +1,168 @@
+/* Packaged stylesheet */
+/* >> Intro styles */
+#intro {
+  background: #43B3AE;
+  margin-bottom: 10px;
+  padding: 10px 0px;
+  width: 100%;
+  border-radius: 10px; }
+
+/* SLIDER */
+#slider {
+  background-color: #cfc;
+  width: 600px;
+  /* important to be same as image width */
+  height: 300px;
+  /* important to be same as image height */
+  margin-left: 10px;
+  /* center the slider container */
+  position: relative;
+  /* important */
+  overflow: hidden;
+  /* important */
+  padding: 0px;
+  box-shadow: 0px 0px 5px black; }
+
+#slider:hover {
+  /*box-shadow: 0px 0px 5px white;*/ }
+
+#sliderContent {
+  width: 600px;
+  /* important to be same as image width or wider */
+  position: absolute;
+  /* important */
+  top: 0px;
+  /* important */
+  margin-left: 0px;
+  /* important */
+  margin: 0px;
+  padding: 0px; }
+
+.sliderImage {
+  float: left;
+  /* important */
+  position: relative;
+  /* important */
+  display: none;
+  /* important */
+  margin: 0px;
+  padding: 0px; }
+  .sliderImage span {
+    position: absolute;
+    /* important */
+    padding: 10px 13px;
+    /*  */
+    width: 100%;
+    /*  */
+    background-color: #cfc;
+    /* background color of span */
+    filter: alpha(opacity=70);
+    /* here you can set the opacity of box with text */
+    -moz-opacity: 0.7;
+    /* here you can set the opacity of box with text */
+    -khtml-opacity: 0.7;
+    /* here you can set the opacity of box with text */
+    opacity: 0.7;
+    /* here you can set the opacity of box with text */
+    color: #000;
+    /* color of the text */
+    display: none;
+    /* important */
+    font-family: Myriad Pro, Helvetica, Arial, sans-serif;
+    font-size: 10px/15px;
+    font-weight: normal; }
+    .sliderImage span h1 {
+      font-size: 18px;
+      padding: 0px;
+      margin: 0px; }
+
+.top {
+  top: 0;
+  left: 0; }
+
+.bottom {
+  bottom: 0;
+  left: 0; }
+
+.left {
+  top: 0;
+  left: 0;
+  width: 110px !important;
+  height: 280px; }
+
+.right {
+  right: 0;
+  bottom: 0;
+  width: 90px !important;
+  height: 290px; }
+
+/*********** News ******************/
+#news {
+  float: right;
+  margin-right: 20px; }
+  #news a:link, #news a:visited {
+    color: inherit;
+    display: block; }
+  #news a:hover {
+    text-decoration: none; }
+  #news h1 {
+    color: white;
+    font-size: 1.5em;
+    font-weight: normal;
+    text-align: center; }
+  #news img {
+    height: 64px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 64px; }
+
+#news2 {
+  margin-top: 20px;
+  margin-right: 20px; }
+  #news2 a:link, #news2 a:visited {
+    color: inherit;
+    display: block; }
+  #news2 a:hover {
+    text-decoration: none; }
+  #news2 img {
+    height: 64px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 64px; }
+
+#news > div,
+#news2 > div {
+  background-color: #cfc;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px black;
+  overflow: hidden;
+  width: 295px; }
+
+#news > div {
+  margin-top: 12px; }
+
+#news.large > div {
+  margin-top: 20px; }
+
+#news2 > div {
+  float: right;
+  margin-right: 20px; }
+
+#news > div:hover,
+#news2 > div:hover {
+  color: #43B3AE;
+  -webkit-box-shadow: 0px 0px 5px white;
+  box-shadow: 0px 0px 5px white; }
+
+#news:first-child {
+  margin-top: 0px; }
+
+#news2:first-child,
+#news2 > .first {
+  margin-right: 0px; }
+
+/* << Intro styles */
+/* >> Weather styles */
 /***************************
  * Weather 
  ***************************/
@@ -379,3 +544,233 @@ body.weather-33 {
   background-position: 10px;
   background-repeat: no-repeat;
   background-size: 32px; }
+
+/* << Weather styles */
+/* >> Table styles */
+body.tennis_reservations article section table thead {
+  background-color: white; }
+
+/* << Table styles */
+/* >> Form styles */
+form {
+  font-size: 120%; }
+
+label {
+  display: block; }
+
+label.hint {
+  font-size: 70%; }
+
+fieldset {
+  border: 2px groove white;
+  margin: 10px 0; }
+
+legend {
+  background-color: white;
+  padding: 5px 10px; }
+
+input[type=email],
+input[type=text],
+input[type=number],
+input[type=password],
+textarea,
+select {
+  border-radius: 3px;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 3px;
+  width: 99%; }
+
+textarea {
+  height: 100px; }
+
+input[type=submit], input[type=button] {
+  background-color: lightgray;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  margin: 5px 0;
+  padding: 5px 10px;
+  width: none; }
+
+input[type=submit]:hover {
+  background-color: teal;
+  color: white; }
+
+/* Tables styles */
+form table {
+  width: 100%; }
+  form table tbody tr th, form table tbody tr td {
+    padding: 5px 8px; }
+  form table tbody tr th {
+    background-color: lightgray;
+    text-align: left; }
+  form table tbody tr td {
+    background-color: white; }
+  form table input, form table textarea, form table select {
+    border: 1px solid lightgray !important; }
+
+form table#court tbody tr td {
+  background: white;
+  border: 3px solid white;
+  color: white;
+  height: 110px;
+  width: 75px; }
+  form table#court tbody tr td label {
+    font-size: 180%;
+    height: 70px; }
+form table#court tbody tr td.available {
+  background-image: url("http://maxkramer.me/images/tennis_court.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 91px 120px; }
+form table#court tbody tr td.available:hover {
+  border-color: yellow; }
+form table#court tbody tr td.unavailable {
+  background-image: url("http://maxkramer.me/images/tennis_court_reserved.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 91px 120px; }
+  form table#court tbody tr td.unavailable label {
+    font-size: 95%;
+    margin-top: 20px; }
+
+.for {
+  background-color: white;
+  border-radius: 5px;
+  float: right;
+  margin-right: 10px;
+  padding: 10px; }
+
+/* Ninja styles */
+p > input[type=radio],
+p > input[type=checkbox] {
+  float: left;
+  height: 16px;
+  opacity: 0; }
+
+p > input[type=radio] + label,
+p > input[type=checkbox] + label {
+  background: url(http://www.thecssninja.com/demo/css_custom-forms/gr_custom-inputs.png) 0 -1px no-repeat;
+  height: 16px;
+  padding-left: 20px; }
+
+p > input[type=radio] + label {
+  background-position: 0 -161px; }
+
+/* Checked styles */
+p > input[type=radio]:checked + label {
+  background-position: 0 -241px; }
+
+p > input[type=checkbox]:checked + label {
+  background-position: 0 -81px; }
+
+p > input[type=checkbox]:hover:checked + label,
+p > input[type=checkbox]:focus:checked + label,
+p > input[type=checkbox]:checked + label:hover,
+p > input[type=checkbox]:focus:checked + label {
+  background-position: 0 -101px; }
+
+p > input[type=radio]:hover:checked + label,
+p > input[type=radio]:focus:checked + label,
+p > input[type=radio]:checked + label:hover,
+p > input[type=radio]:focus:checked + label {
+  background-position: 0 -261px; }
+
+p > input[type=checkbox]:hover + label,
+p > input[type=checkbox]:focus + label,
+p > input[type=checkbox] + label:hover {
+  background-position: 0 -21px; }
+
+p > input[type=radio]:hover + label,
+p > input[type=radio]:focus + label,
+p > input[type=radio] + label:hover {
+  background-position: 0 -181px; }
+
+p > input[type=checkbox]:active + label,
+p > input[type=checkbox] + label:hover:active {
+  background-position: 0 -41px; }
+
+p > input[type=radio]:active + label,
+p > input[type=radio] + label:hover:active {
+  background-position: 0 -201px; }
+
+p > input[type=checkbox]:active:checked + label,
+p > input[type=checkbox]:checked + label:hover:active {
+  background-position: 0 -121px; }
+
+p > input[type=radio]:active:checked + label,
+p > input[type=radio]:checked + label:hover:active {
+  background-position: 0 -281px; }
+
+p > input[type=checkbox]:disabled + label,
+p > input[type=checkbox]:hover:disabled + label,
+p > input[type=checkbox]:focus:disabled + label,
+p > input[type=checkbox]:disabled + label:hover,
+p > input[type=checkbox]:disabled + label:hover:active {
+  background-position: 0 -61px; }
+
+p > input[type=radio]:disabled + label,
+p > input[type=radio]:hover:disabled + label,
+p > input[type=radio]:focus:disabled + label,
+p > input[type=radio]:disabled + label:hover,
+p > input[type=radio]:disabled + label:hover:active {
+  background-position: 0 -221px; }
+
+p > input[type=checkbox]:disabled:checked + label,
+p > input[type=checkbox]:hover:disabled:checked + label,
+p > input[type=checkbox]:focus:disabled:checked + label,
+p > input[type=checkbox]:disabled:checked + label:hover,
+p > input[type=checkbox]:disabled:checked + label:hover:active {
+  background-position: 0 -141px; }
+
+p > input[type=radio]:disabled:checked + label,
+p > input[type=radio]:hover:disabled:checked + label,
+p > input[type=radio]:focus:disabled:checked + label,
+p > input[type=radio]:disabled:checked + label:hover,
+p > input[type=radio]:disabled:checked + label:hover:active {
+  background-position: 0 -301px; }
+
+/* << Form styles */
+/* >> Scaffold styles */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+
+div.field, div.actions {
+  margin-bottom: 10px; }
+
+#notice {
+  background-color: white;
+  border-color: 1px solid green;
+  border-radius: 5px;
+  color: green;
+  margin: 0px 20px;
+  padding: 10px; }
+
+.field_with_errors {
+  color: red;
+  /*padding: 3px 5px;*/ }
+
+#error_explanation {
+  width: 75%;
+  background-color: red;
+  border-radius: 5px;
+  margin: 0 auto 20px auto; }
+
+#error_explanation h2 {
+  background-color: white;
+  border: none !important;
+  color: red;
+  margin: 0;
+  padding: 10px; }
+
+#error_explanation ul li {
+  list-style: square;
+  color: white; }
+
+/* << Scaffold styles */
