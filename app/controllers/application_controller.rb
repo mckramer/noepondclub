@@ -8,16 +8,16 @@ class ApplicationController < ActionController::Base
   private
   
   def get_tweets
-    @npc_tweets = Twitter::Search.new.from("NoePondClub").per_page(3).fetch
-    @mention_tweets = Twitter::Search.new.mentioning("NoePondClub").per_page(3).fetch
+    @npc_tweets ||= Twitter::Search.new.from("NoePondClub").per_page(3).fetch
+    @mention_tweets ||= Twitter::Search.new.mentioning("NoePondClub").per_page(3).fetch
     
     # Handle problems with Twitter
     rescue Twitter::ServiceUnavailable, Errno::ETIMEDOUT then @no_tweets = true
   end
   
   def get_weather
-    client = YahooWeather::Client.new
-    @weather = client.lookup_by_woeid(12760949)
+    client ||= YahooWeather::Client.new
+    @weather ||= client.lookup_by_woeid(12760949)
     if [3, 4, 37, 38, 39, 45].include?(@weather.condition.code)
       @weather_warning = :thunderstorms
     end

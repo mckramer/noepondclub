@@ -1,7 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+# Fix for heroku; rake v1.9.0 is broken
+gem 'rake', '0.8.7'
 
+# Rails
+gem 'rails', '3.0.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

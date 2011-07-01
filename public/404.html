@@ -1,26 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
-
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+  <head>
+    <title>404: Does not exist | Noe Pond Club</title>
+    <style type="text/css">
+      div.dialog {
+        background-color: white;
+        padding: 5px 4em;
+        margin: 6em 100px;
+        border-radius: 10px;
+      }
+      div.dialog h1 { font-size: 150%; color: #f00; }
+      div.dialog p { font-size: 110%;}
+    </style>
+    <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <nav class="top">
+      <ul> 
+        <li><a href="/">Home</a></li> 
+        <li><a href="/contact">Contact</a></li> 
+				</ul> 
+    </nav>
+    <header>
+      <hgroup>
+        <h1>NPC</h1>
+				<h2><a href="/">Noe Pond Club</a></h2> 
+				<h3>the family club since 1955</h3>
+      </hgroup>
+    </header>
+    <nav class="info">
+      <ul>
+        <li><a href="/">&nbsp;</a></li>
+      </ul>
+    </nav>
+    <!-- This file lives in public/404.html -->
+    <div class="dialog">
+      <h1>Sorry, but the page you were looking for doesn't exist.</h1>
+      <p>You may have mistyped the address or the page may have moved.</p>
+      <p style="text-align:right;">&rarr;&nbsp;<a href="javascript:history.go(-1)">Return to the previous page?</a></p>
+      <p style="text-align:right;">&rarr;&nbsp;<a href="mailto:admin@noepondclub.org">Email the NPC administrator?</a></p>
+    </div>
+    <footer>
+      <p>© 2010-2011 - Noe Pond Club, Inc.</p>
+      <p><a href="http://maps.google.com/maps/place?um=1&amp;ie=UTF-8&amp;q=395+Southern+Blvd,+Chatham,+NJ+07928&amp;fb=1&amp;gl=us&amp;hnear=0x89c3ac5c397a0f1d:0x6240bf700c9cc9bf,Maplewood,+NJ&amp;cid=3740138674611884140">395 Southern Blvd, Chatham, NJ 07928</a> — <a href="tel:973-377-2445">973-377-2445</a></p>
+      <p>Site design by <a href="http://maxkramer.me">Max Kramer</a> (<a href="http://twitter.com/maxckramer">@maxckramer</a>)</p> 
+		</footer>
+  </body>
 </html>
