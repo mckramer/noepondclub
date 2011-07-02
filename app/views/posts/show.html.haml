@@ -1,8 +1,13 @@
 - content_for :title, "Posts"
 %article
   %section
-    %p#notice= notice
+    - if notice
+      %p#notice= notice
     %h2= @post.title
+    .author
+      = "Posted on #{@post.created_at.strftime("%B #{@post.created_at.day.ordinalize}, %I:%M %p")}"
+      by 
+      = link_to "Max Kramer", "https://twitter.com/maxckramer"  
     %p= @post.body
     %ol.links
       %li= link_to 'Edit', edit_post_path(@post) if member_signed_in?

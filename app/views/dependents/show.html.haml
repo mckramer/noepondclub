@@ -1,13 +1,21 @@
-- content_for :title, "Viewing dependent of #{@member.badge}"
+- content_for :title, "Dependent"
+- content_for :subtitle, "Viewing dependent"
 %article
   %section
+    .for= @member.display
+    .clear
+    - if notice
+      %p#notice= notice
     %p
       %b Name:
       = @dependent.name
     %p
-      %b Dob:
-      = @dependent.dob
+      %b Age:
+      = "#{@dependent.age} (#{@dependent.dob})"
     %p
-      = link_to "Edit", edit_dependent_path(@dependent)
-      = link_to "Destroy", @dependent, :confirm => 'Are you sure?', :method => :delete
-      = link_to "View All", dependents_path
+      %b Emblem:
+      = @dependent.emblem
+    %ol.links
+      %li= link_to "Edit", edit_member_dependent_path(@member, @dependent)
+      %li= link_to "Destroy", [@member, @dependent], :confirm => 'Are you sure?', :method => :delete
+      %li= link_to "Back to member account", member_path(@member)

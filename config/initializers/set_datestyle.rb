@@ -1,0 +1,1 @@
+#ActiveRecord::Base.postgresql_connection.execute 'SET DATESTYLE TO ISO,YMD;'

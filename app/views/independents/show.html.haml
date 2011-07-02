@@ -1,27 +1,21 @@
-%p#notice= notice
-
-%p
-  %b Name first:
-  = @independent.name_first
-%p
-  %b Name middle:
-  = @independent.name_middle
-%p
-  %b Name last:
-  = @independent.name_last
-%p
-  %b Name suffix:
-  = @independent.name_suffix
-%p
-  %b Email:
-  = @independent.email
-%p
-  %b Phone:
-  = @independent.phone
-%p
-  %b Member:
-  = @independent.member
-
-= link_to 'Edit', edit_independent_path(@independent)
-\|
-= link_to 'Back', independents_path
+- content_for :title, "Independent"
+- content_for :subtitle, "Viewing independent"
+%article
+  %section
+    .for= @member.display
+    .clear
+    - if notice
+      %p#notice= notice
+    %p
+      %b Name:
+      = @independent.name
+    %p
+      %b Email:
+      = @independent.email
+    %p
+      %b Phone:
+      = @independent.phone
+    %ol.links
+      %li= link_to "Edit", edit_member_independent_path(@member, @independent)
+      %li= link_to "Destroy", [@member, @independent], :confirm => 'Are you sure?', :method => :delete
+      %li= link_to "Back to account", @member

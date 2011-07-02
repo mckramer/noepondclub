@@ -5,7 +5,10 @@
 - else
   - @comments.each do |comment|
     %ol.comments
-      %li= comment.comment
+      %li
+        = comment.comment
+        by
+        = comment.user
 - if member_signed_in?
   %h3 Make a comment
   = render 'comments/form'

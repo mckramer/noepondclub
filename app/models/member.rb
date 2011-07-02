@@ -3,6 +3,7 @@ class Member < ActiveRecord::Base
   has_many :independents
   has_many :dependents
   has_many :tennis_reservations
+  has_many :posts, :as => :authorable
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

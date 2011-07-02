@@ -7,8 +7,7 @@ class TennisReservationsController < ApplicationController
   before_filter(:get_member)
 
   public
-  # GET /tennis_reservations
-  # GET /tennis_reservations.xml
+  # GET /members/1/reservations/tennis
   def index
     @tennis_reservations = @member.tennis_reservations
     @tennis_reservations.sort! { |a, b| [a.date, a.start_at, a.court] <=> [b.date, b.start_at, b.court] }
@@ -22,10 +21,9 @@ class TennisReservationsController < ApplicationController
     end
   end
 
-  # GET /tennis_reservations/1
-  # GET /tennis_reservations/1.xml
+  # GET /members/1/reservations/tennis/1
   def show
-    @tennis_reservation = TennisReservation.find(params[:id])
+    @tennis_reservation = @member.tennis_reservations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,10 +31,9 @@ class TennisReservationsController < ApplicationController
     end
   end
 
-  # GET /tennis_reservations/new
-  # GET /tennis_reservations/new.xml
+  # GET /members/1/reservations/tennis/new
   def new
-    @tennis_reservation = TennisReservation.new
+    @tennis_reservation = @member.tennis_reservations.build
     @times = Array.new
     time = 480
     11.times do
@@ -55,13 +52,12 @@ class TennisReservationsController < ApplicationController
     end
   end
 
-  # GET /tennis_reservations/1/edit
+  # GET /members/1/reservations/tennis/1/edit
   def edit
-    @tennis_reservation = TennisReservation.find(params[:id])
+    @tennis_reservation = @member.tennis_reservations.find(params[:id])
   end
 
-  # POST /tennis_reservations
-  # POST /tennis_reservations.xml
+  # POST /members/1/reservations/tennis
   def create
     @tennis_reservation = @member.tennis_reservations.build(params[:tennis_reservation])
     @tennis_reservation.end_at = @tennis_reservation.start_at.to_i + @tennis_reservation.length.to_i
@@ -77,10 +73,9 @@ class TennisReservationsController < ApplicationController
     end
   end
 
-  # PUT /tennis_reservations/1
-  # PUT /tennis_reservations/1.xml
+  # PUT /members/1/reservations/tennis/1
   def update
-    @tennis_reservation = TennisReservation.find(params[:id])
+    @tennis_reservation = @member.tennis_reservations.find(params[:id])
     params[:tennis_reservation][:end_at] = params[:tennis_reservation][:start_at].to_i + params[:tennis_reservation][:length].to_i
 
     respond_to do |format|
@@ -94,10 +89,9 @@ class TennisReservationsController < ApplicationController
     end
   end
 
-  # DELETE /tennis_reservations/1
-  # DELETE /tennis_reservations/1.xml
+  # DELETE /members/1/reservations/tennis/1
   def destroy
-    @tennis_reservation = TennisReservation.find(params[:id])
+    @tennis_reservation = @member.tennis_reservations.find(params[:id])
     @tennis_reservation.destroy
 
     respond_to do |format|

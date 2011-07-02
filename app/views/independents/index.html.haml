@@ -1,31 +1,24 @@
-%h1 Listing independents
-
-%table
-  %tr
-    %th Name first
-    %th Name middle
-    %th Name last
-    %th Name suffix
-    %th Email
-    %th Phone
-    %th Member
-    %th
-    %th
-    %th
-
-  - @independents.each do |independent|
-    %tr
-      %td= independent.name_first
-      %td= independent.name_middle
-      %td= independent.name_last
-      %td= independent.name_suffix
-      %td= independent.email
-      %td= independent.phone
-      %td= independent.member
-      %td= link_to 'Show', independent
-      %td= link_to 'Edit', edit_independent_path(independent)
-      %td= link_to 'Destroy', independent, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Independent', new_independent_path
+- content_for :title, "Independents"
+- content_for :subtitle, "Listing independents"
+%article
+  %section
+    .for= @member.display
+    .clear
+    %table.reservations
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Phone
+          %th
+      %tbody
+        - @independents.each do |independent|
+          %tr
+            %td= independent.name
+            %td= independent.email
+            %td= independent.phone
+            %td= link_to 'Show', [@member, independent]
+    %tfoot
+    %ol.links
+      %li= link_to "Add a new independent", new_member_independent_path(@member)
+      %li= link_to "Back to account", @member

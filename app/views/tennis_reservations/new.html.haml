@@ -2,7 +2,7 @@
 - content_for :subtitle, "New tennis reservation"
 %article
   %section
-    .for= "#{@member.name} (#{@member.badge})"
+    .for= @member.display
     .clear
     = render 'form'
     %p= link_to 'Back', member_tennis_reservations_path(@member)

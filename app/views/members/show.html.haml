@@ -2,40 +2,43 @@
 - content_for :subtitle, "#{@member.badge}: #{@member.name}"
 %article
   %section
-    %p= "Member for #{time_ago_in_words(@member.created_at)}"
-    %p= "Profile last updated #{time_ago_in_words(@member.updated_at)} ago"
-    %p
+    .for
       Membership type:
       = @member.membership.humanize
+    .clear
     %h2 Adults
-    %table{:class => 'reservations'}
-      %thead
-        %tr
-          %th Name
-          %th Legacy
-      %tbody
-        %tr
-          %td Mr. Charles Kramer, Jr.
-          %td= link_to "Yes", root_path
-        %tr
-          %td Mrs. Sandra Kramer
-          %td No
-    %h2 Children
-    %table{:class => 'reservations'}
-      %thead
-        %tr
-          %th Name
-          %th Birthdate
-          %th Emblem
-      %tbody
-        - 3.times do
+    - if @member.independents.empty?
+      %p No independents
+    - else
+      %table{:class => 'reservations'}
+        %thead
           %tr
-            %td= ['Max', 'Alex', 'Cam', 'Shannon', 'Kelsey', 'Matt', 'Bethany'].sample
-            - birthday = Date.today - 10.years - rand(5).years
-            - age = Date.today.year - birthday.year
-            - age -= 1 if Date.today < birthday + age.years
-            %td= "#{birthday.strftime("%m/%d/%y")} (#{age})"
-            %td= ['Red frog', 'Blue frog', 'Green fish', 'Gold fish'].sample
+            %th Name
+            %th Legacy
+        %tbody
+          - @member.independents.each do |independent|
+            %tr
+              %td= independent.name
+              - if true
+                %td No
+              - else
+                %td= link_to "Yes", root_path
+    %h2 Children
+    - if @member.dependents.empty?
+      %p No dependents
+    - else
+      %table{:class => 'reservations'}
+        %thead
+          %tr
+            %th Name
+            %th Birthdate
+            %th Emblem
+        %tbody
+          - @member.dependents.each do |dependent|
+            %tr
+              %td= dependent.name
+              %td= "#{dependent.dob.strftime("%m/%d/%y")} (#{dependent.age})"
+              %td= dependent.emblem
     %h2 Current reservations
     %h3= link_to "Tennis", member_tennis_reservations_path(@member)
     - if @tennis_reservations.empty?
@@ -58,8 +61,10 @@
               %td= "#{reservation.start_at_text}-#{reservation.end_at_text}"
               %td= reservation.court
               %td= reservation.surface
-              %td= link_to "Edit or cancel", root_path
-      %p= link_to "View all tennis reservations", member_tennis_reservations_path(@member)
+              %td= link_to "Cancel", [@member, reservation], :method => :delete, :confirm => "Are you sure that you want to cancel the reservation?"
+        %tfoot
+          %tr
+            %td{:colspan=>5}= link_to "&rarr; Make new tennis reservation".html_safe, new_member_tennis_reservation_path(@member)
     %h2 Lessons
     %h3 Tennis
     %table{:class => "reservations"}
@@ -87,6 +92,9 @@
               %td Paid
             - else
               %td= link_to "$#{rand(5) + 10} owed", root_path
+      %tfoot
+        %tr
+          %td{:colspan=>6}= link_to "&rarr; Make new tennis lesson reservation".html_safe, root_path
     %h3 Swimming
     %table{:class => "reservations"}
       %thead
@@ -113,3 +121,9 @@
               %td Paid
             - else
               %td= link_to "$#{rand(5) + 10} owed", root_path
+      %tfoot
+        %tr
+          %td{:colspan=>6}= link_to "&rarr; Make new swimming lesson reservation".html_safe, root_path
+    %h2 Other information 
+    %p= "Member for #{time_ago_in_words(@member.created_at)}"
+    %p= "Profile last updated #{time_ago_in_words(@member.updated_at)} ago"

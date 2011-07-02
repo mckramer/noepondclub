@@ -11,7 +11,7 @@
         %th= f.label :member, "Author"
         %td
           = link_to current_member.name, current_member
-          = f.hidden_field :member
+          = hidden_field_tag :member, current_member.id
       %tr
         %th= f.label :comment
         %td= f.text_area :comment, :rows => 4

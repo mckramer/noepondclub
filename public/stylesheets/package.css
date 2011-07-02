@@ -569,6 +569,7 @@ legend {
   background-color: white;
   padding: 5px 10px; }
 
+input[type=tel],
 input[type=email],
 input[type=text],
 input[type=number],

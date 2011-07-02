@@ -1,10 +1,10 @@
-class PostsController < ApplicationController
+class CommentsController < ApplicationController
   
   before_filter :load_commentable
   
   def create
     @comment = @commentable.comments.build(params[:comment])
-    @comment.user = current_user
+    @comment.member = @member
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @commentable }
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   protected
   def load_commentable
-    @commentable = params[:commentable_type].camelize.constantize.find(params[:commentable_id])
+    @commentable = params[:comment][:commentable_type].camelize.constantize.find(params[:comment][:commentable_id])
   end
   
 end

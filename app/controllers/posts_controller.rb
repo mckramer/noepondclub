@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_filter :authenticate_member!, :except => [:index, :show]
+  
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all(:order => "id DESC")
+    @posts = Post.all
 
     respond_to do |format|
       format.html # index.html.erb

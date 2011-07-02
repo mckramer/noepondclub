@@ -1,13 +1,21 @@
-= form_for @dependent do |f|
-  = f.error_messages
+= form_for [@member, @dependent] do |f|
+  -if @dependent.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@dependent.errors.count, "error")} prohibited this dependent from being saved:"
+      %ul
+        - @dependent.errors.full_messages.each do |msg|
+          %li= msg
   %table
     %thead
     %tbody
       %tr
-        %td= f.label :name
-        %td= f.text_field :name
+        %th= f.label :name_first, "First name"
+        %td= f.text_field :name_first
       %tr
-        %td= f.label :dob
-        %td= f.datetime_select :dob
+        %th= f.label :name_last, "Last name"
+        %td= f.text_field :name_last
+      %tr
+        %th= f.label :dob, "Date of birth"
+        %td= f.date_select :dob, :start_year => Date.today.year - 25, :end_year => Date.today.year
     %tfoot
   = f.submit

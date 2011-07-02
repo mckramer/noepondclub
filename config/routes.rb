@@ -1,16 +1,9 @@
 Noepond::Application.routes.draw do
   
-  resources :posts
-  
   resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
-
+  resources :posts
+    
   # Data
-  # > Tennis
-  # resources :tennis_courts
-  # >> number, surface (hard-code), open_time, close_time
-  # > Paddle
-  # resources :paddle_courts
-  # >> number, open_time, close_time
   # > Swim lessons
   # > Camp
   

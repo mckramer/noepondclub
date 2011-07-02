@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
     @npc_tweets ||= Twitter::Search.new.from("NoePondClub").per_page(3).fetch
     @mention_tweets ||= Twitter::Search.new.mentioning("NoePondClub").per_page(3).fetch
     
+    # Handle lack of new tweets
+    @no_tweets = true if @npc_tweets.empty? && @mention_tweets.empty?
     # Handle problems with Twitter
     rescue Twitter::ServiceUnavailable, Errno::ETIMEDOUT then @no_tweets = true
   end

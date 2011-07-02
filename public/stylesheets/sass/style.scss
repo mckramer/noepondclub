@@ -1,4 +1,4 @@
-/**********************************************
+﻿/**********************************************
  * Main stylesheet for Noe Pond Club
  * by Max Kramer
  * http://maxkramer.me/
@@ -564,9 +564,10 @@ table.reservations {
   width: 90%;
   thead {
     background-color: lightgray !important;
+    font-size: 110%;
     tr {
-      th {
-      
+      th, td {
+        padding: 8px;
       }
     }
   }
@@ -574,7 +575,7 @@ table.reservations {
     background-color: white;
     tr {
       th, td {
-        padding: 3px;
+        padding: 5px;
       }
       th {
       
@@ -585,7 +586,14 @@ table.reservations {
     }
   }
   tfoot {
-  
+    background-color: lightgray !important;
+    font-size: 80%;
+    text-align: right;
+    tr {
+      th, td {
+        padding: 8px;
+      }
+    }
   }
 }
 ol.links {

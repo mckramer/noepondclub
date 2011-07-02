@@ -1,4 +1,4 @@
-= form_for @independent do |f|
+= form_for [@member, @independent]do |f|
   -if @independent.errors.any?
     #error_explanation
       %h2= "#{pluralize(@independent.errors.count, "error")} prohibited this independent from being saved:"
@@ -6,26 +6,29 @@
         - @independent.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name_first
-    = f.text_field :name_first
-  .field
-    = f.label :name_middle
-    = f.text_field :name_middle
-  .field
-    = f.label :name_last
-    = f.text_field :name_last
-  .field
-    = f.label :name_suffix
-    = f.text_field :name_suffix
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :phone
-    = f.text_field :phone
-  .field
-    = f.label :member
-    = f.text_field :member
-  .actions
-    = f.submit 'Save'
+  %table
+    %thead
+    %tbody
+      %tr
+        %th= f.label :name_first, "First name"
+        %td= f.text_field :name_first
+      %tr
+        %th= f.label :name_last, "Last name"
+        %td= f.text_field :name_last
+      %tr
+        %th= f.label :name_suffix, "Suffix"
+        %td= f.text_field :name_suffix, :placeholder => "Jr., III"
+      %tr
+        %th= f.label :email, "Email"
+        %td= f.email_field :email, :placeholder => "example@email.com"
+      %tr
+        %th= f.label :phone_areacode, "Emergency phone number"
+        %td
+          (
+          = f.phone_field :phone_areacode, :placeholder => "###", :style => "width:45px;", :maxlength => 3
+          )
+          = f.phone_field :phone_exchange, :placeholder => "###", :style => "width:45px;", :maxlength => 3
+          \-
+          = f.phone_field :phone_subscriber, :placeholder => "####", :style => "width:57px;", :maxlength => 4
+    %tfoot
+  = f.submit

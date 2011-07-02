@@ -2,9 +2,14 @@ class Dependent < ActiveRecord::Base
   
   belongs_to :member
   
+  attr_accessor :start_emblem
   attr_accessible :name_first, :name_middle, :name_last, :dob
   
-  def current_age
+  def name
+    return "#{name_first}"
+  end
+  
+  def age
     age = Date.today.year - self.dob.year
     if Date.today < ( self.dob + age.years )
       return age - 1
@@ -13,14 +18,14 @@ class Dependent < ActiveRecord::Base
     end
   end
   
-  def current_badge
-    if self.emblem_goldendolphin.empty?
-      if self.emblem_silverdolphin.empty?
-        if self.emblem_maroonshark.empty?
-          if self.emblem_redshark.empty?
-            if self.emblem_goldfish.empty?
-              if self.emblem_greenfish.empty?
-                if self.emblem_bluefrog.empty?
+  def emblem
+    if emblem_goldendolphin.blank?
+      if emblem_silverdolphin.blank?
+        if emblem_maroonshark.blank?
+          if emblem_redshark.blank?
+            if emblem_goldfish.blank?
+              if emblem_greenfish.blank?
+                if emblem_bluefrog.blank?
                   return "Red frog"
                 else
                   return "Blue frog"

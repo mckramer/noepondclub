@@ -1,7 +1,9 @@
-%h1 Editing independent
-
-= render 'form'
-
-= link_to 'Show', @independent
-\|
-= link_to 'Back', independents_path
+- content_for :title, "Independent"
+- content_for :subtitle, "Editing independent"
+%article
+  %section
+    .for= @member.display
+    .clear
+    = render 'form'
+    %ol.links
+      %li= link_to "Back to account", @member

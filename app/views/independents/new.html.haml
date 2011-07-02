@@ -1,5 +1,9 @@
-%h1 New independent
-
-= render 'form'
-
-= link_to 'Back', independents_path
+- content_for :title, "Independent"
+- content_for :subtitle, "New independent"
+%article
+  %section
+    .for= @member.display
+    .clear
+    = render 'form'
+    %ol.links
+      %li= link_to "Back to account", @member

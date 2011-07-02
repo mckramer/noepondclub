@@ -1,7 +1,8 @@
-- content_for :title "Dependent"
-- content_for :subtitle "New dependent for #{link_to @member.badge, @member}"
+- content_for :title, "Dependent"
+- content_for :subtitle, "New dependent"
 %article
   %section
+    .for= @member.display
+    .clear
     = render 'form'
-    %p
-      = link_to "Back to List", member_dependents_path(@member)
+    %p= link_to "Back to account", member_path(@member)

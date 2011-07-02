@@ -1,29 +1,18 @@
 class TennisReservation < ActiveRecord::Base
   belongs_to :member
   
-  validates :member, :presence => true
+  validates_presence_of :member
   validates :court, :presence => true, :numericality => {:within => 1..10, :only_integer => true}
-  validates :date, :presence => true
+  validates_presence_of :date
   validates :start_at, :presence => true, :numericality => {:within => 0..1440, :only_integer => true}
   validates :end_at, :presence => true, :numericality => {:within => 0..1440, :only_integer => true}
-  validates_uniqueness_of :court, :scope => [:date, :start_at, :end_at]
-  
+    
   validate :uniqueness_of_reservation
   validate :end_is_greater_than_start
   validate :length_of_reservation
   
   attr_accessor :length
   attr_accessible :date, :start_at, :end_at, :court, :length
-  
-  # 1. :start_at must be less than :end_at
-  # 2. for non-admins, :end_at must be 2 hours at most larger than :start_at
-  # 3. start_at and end_at of new reservation must be both smaller or both larger than previous entries
-  # >  get Reservation.where(:date == date).each do { check step 3 here } end
-  
-  # for view
-  # Have user first select date, then fill in other fields
-  # User can select start time and then duration of time
-  # 
   
   public
   

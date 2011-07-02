@@ -1,18 +1,22 @@
 - content_for :title, "Dependents"
+- content_for :subtitle, "Listing dependents"
 %article
   %section
-    %table
+    .for= @member.display
+    %table.reservations
       %thead
         %tr
+          %th 
           %th Name
           %th Date of birth
+          %th Emblem
       %tbody
         - for dependent in @dependents
           %tr
+            %td= link_to "Show", [@member, dependent]
             %td= dependent.name
             %td= dependent.dob
-            %td= link_to "Show", dependent
-            %td= link_to "Edit", edit_member_dependent_path(@member, dependent)
-            %td= link_to "Destroy", dependent, :confirm => 'Are you sure?', :method => :delete
+            %td= dependent.emblem
       %tfoot
-    %p= link_to "New Dependent", new_member_dependent_path(@member)
+    %ol.links
+      %li= link_to "Add a new dependent", new_member_dependent_path(@member)
