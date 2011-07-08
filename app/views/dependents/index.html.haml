@@ -3,6 +3,7 @@
 %article
   %section
     .for= @member.display
+    .clear
     %table.reservations
       %thead
         %tr
@@ -20,3 +21,4 @@
       %tfoot
     %ol.links
       %li= link_to "Add a new dependent", new_member_dependent_path(@member)
+      %li= link_to "Back to account", @member

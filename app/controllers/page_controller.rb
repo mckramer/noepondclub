@@ -4,14 +4,6 @@ class PageController < ApplicationController
     @post = Post.last
   end
   
-  def about
-  
-  end
-  
-  def contact
-  
-  end
-  
   def directions
   @directions = nil
   case params[:from]
@@ -26,24 +18,13 @@ class PageController < ApplicationController
     end
   end
   
-  def employment
-  
-  end
-  
   def current
     @posts = Post.all(:order => "id DESC")
   end
   
-  def prospective
-  
-  end
-  
-  def family
-  
-  end
-  
-  def history
-  
-  end
+  #define_method('teams-swiming') do
+  #  @posts = Post.where(:category => 'swim-team')
+  #  @events = Event.where(:category => 'swim-team')
+  #end
   
 end

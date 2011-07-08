@@ -38,9 +38,11 @@
     <%= csrf_meta_tag %>
   </head>
   <body class="<%= @body_classes.join(' ') %>">
+    <% if @weather %>
     <div id="current-weather" style="position:absolute; top:5px; left:5px; background-color: white; padding: 7px 10px; border-radius:10px; z-index:-99; font-size:80%;">
       Air: <%= @weather.condition.temp %>&deg;<%= @weather.units.temperature %>&emsp;Water: <%= render 'shared/condition-water' %>
     </div>
+    <% end %>
     <% if @weather_warning %>
     <div id="info">
       <%= render 'shared/caution-thunderstorms' if @weather_warning === :thunderstorms %>
@@ -129,20 +131,20 @@
       <div class="social">
         <h1><img src="http://si0.twimg.com/images/dev/cms/intents/bird/bird_blue/bird_16_blue.png" />&nbsp;&nbsp;Twitter</h1>
         <% if @no_tweets %>
-        <h2>Follow <a href="https://twitter.com/#!/NoePondClub">Noe Pond</a></h2>
+        <h2><a href="https://twitter.com/#!/NoePondClub">Follow Noe Pond</a></h2>
         <% else %>
-        <h2>From <a href="https://twitter.com/#!/NoePondClub">Noe Pond</a></h2>
+        <h2><a href="https://twitter.com/#!/NoePondClub">From Noe Pond</a></h2>
         <ol>
         <% first = true %>
         <% @npc_tweets.each do |tweet| %>
           <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
-        <% if @mentions_tweets %>
+        <% if @mention_tweets %>
         <h2>Recent mentions</h2>
         <ol>
         <% first = true %>
-        <% @mentions_tweets.each do |tweet| %>
+        <% @mention_tweets.each do |tweet| %>
           <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
@@ -171,8 +173,8 @@
           </div>
           <div class="weather-<%= @weather.forecasts[1].code %>">
             <h3><%= @weather.forecasts[1].day %></h3>
-            High: <%= @weather.forecasts[0].high %>&deg;<%= @weather.units.temperature %>, 
-            Low: <%= @weather.forecasts[0].low %>&deg;<%= @weather.units.temperature %> 
+            High: <%= @weather.forecasts[1].high %>&deg;<%= @weather.units.temperature %>, 
+            Low: <%= @weather.forecasts[1].low %>&deg;<%= @weather.units.temperature %> 
             <span class="text"><%= @weather.forecasts[1].text %></span>
           </div>
         </div>

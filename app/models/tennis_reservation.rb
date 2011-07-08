@@ -7,7 +7,9 @@ class TennisReservation < ActiveRecord::Base
   validates :start_at, :presence => true, :numericality => {:within => 0..1440, :only_integer => true}
   validates :end_at, :presence => true, :numericality => {:within => 0..1440, :only_integer => true}
     
-  validate :uniqueness_of_reservation
+  # !!! problems with postreSQL database
+  # validate :uniqueness_of_reservation
+  # !!!
   validate :end_is_greater_than_start
   validate :length_of_reservation
   

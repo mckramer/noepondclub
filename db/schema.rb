@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110702034028) do
+ActiveRecord::Schema.define(:version => 20110708221253) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -90,7 +90,13 @@ ActiveRecord::Schema.define(:version => 20110702034028) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "authorable_id"
+    t.string   "authorable_type"
+    t.string   "category"
   end
+
+  add_index "posts", ["authorable_id"], :name => "index_posts_on_authorable_id"
+  add_index "posts", ["authorable_type"], :name => "index_posts_on_authorable_type"
 
   create_table "tennis_reservations", :force => true do |t|
     t.integer  "member_id"

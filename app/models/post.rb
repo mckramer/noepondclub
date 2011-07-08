@@ -6,4 +6,8 @@ class Post < ActiveRecord::Base
   def to_param
     "#{id}-#{title.parameterize}"
   end
+  
+  def self.category_list
+    return ['general', 'swimming', 'swim-team', 'tennis', 'tennis-team']
+  end
 end

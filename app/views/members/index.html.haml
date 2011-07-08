@@ -1,7 +1,9 @@
 - content_for :title, "Members"
 %article
   %section
-    %table
+    - if notice
+      %p#notice notice
+    %table.reservations
       %thead
         %tr
           %th Badge

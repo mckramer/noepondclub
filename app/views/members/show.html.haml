@@ -14,11 +14,13 @@
         %thead
           %tr
             %th Name
+            %th Phone
             %th Legacy
         %tbody
           - @member.independents.each do |independent|
             %tr
               %td= independent.name
+              %td= independent.phone
               - if true
                 %td No
               - else
@@ -37,7 +39,7 @@
           - @member.dependents.each do |dependent|
             %tr
               %td= dependent.name
-              %td= "#{dependent.dob.strftime("%m/%d/%y")} (#{dependent.age})"
+              %td= "#{dependent.dob.strftime("%m/%d/%y")} (#{dependent.age} yrs old)"
               %td= dependent.emblem
     %h2 Current reservations
     %h3= link_to "Tennis", member_tennis_reservations_path(@member)

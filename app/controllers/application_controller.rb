@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
   def get_weather
     client ||= YahooWeather::Client.new
     @weather ||= client.lookup_by_woeid(12760949)
-    if [3, 4, 37, 38, 39, 45].include?(@weather.condition.code)
+    thunderstorms = [3, 4, 37, 38, 39, 45, 47]
+    if thunderstorms.include?(@weather.forecasts[0].code) || thunderstorms.include?(@weather.condition.code)
       @weather_warning = :thunderstorms
     end
     
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::Base
   
   def get_classes
     @body_classes = params.values_at(:controller, :action)
-    @body_classes << "weather-#{@weather.condition.code}" if @weather.nil? == false
+    @body_classes << "weather-#{@weather.condition.code}" unless @weather.nil?
   end
 
 end
