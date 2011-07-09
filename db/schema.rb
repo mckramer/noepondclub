@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708221253) do
+ActiveRecord::Schema.define(:version => 20110709141247) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -46,6 +46,39 @@ ActiveRecord::Schema.define(:version => 20110708221253) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "employees", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",                       :default => 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.integer  "height"
+    t.integer  "weight"
+    t.string   "bio"
+    t.string   "cell"
+    t.string   "college"
+    t.string   "highschool"
+    t.string   "hometown"
+    t.string   "phone"
+    t.string   "roles"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name_last"
+    t.string   "name_first"
+  end
+
+  add_index "employees", ["email"], :name => "index_employees_on_email", :unique => true
+  add_index "employees", ["reset_password_token"], :name => "index_employees_on_reset_password_token", :unique => true
+  add_index "employees", ["unlock_token"], :name => "index_employees_on_unlock_token", :unique => true
 
   create_table "independents", :force => true do |t|
     t.string   "name_first"

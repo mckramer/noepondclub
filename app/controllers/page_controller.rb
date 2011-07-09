@@ -1,7 +1,7 @@
 class PageController < ApplicationController
-  before_filter :authenticate_member!, :only => [:current]
+  before_filter :authenticate_member!, :only => [:current, :teams_swimming]
   def home
-    @post = Post.last
+    @post = Post.first
   end
   
   def directions
@@ -22,9 +22,9 @@ class PageController < ApplicationController
     @posts = Post.all(:order => "id DESC")
   end
   
-  #define_method('teams-swiming') do
-  #  @posts = Post.where(:category => 'swim-team')
-  #  @events = Event.where(:category => 'swim-team')
-  #end
+  def teams_swimming
+    @posts = Post.where(:category => 'swim-team')
+    # @events = Event.where(:category => 'swim-team')
+  end
   
 end

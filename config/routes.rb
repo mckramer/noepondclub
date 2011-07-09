@@ -22,12 +22,15 @@ Noepond::Application.routes.draw do
     # > member_id, member_name(s) (dependent or adult), instructor_id, type = { private, group, semi-private }, date, time, emblem, completed, reviewed, paid, comments
   end
   
+  match 'employees/profile' => "employees#profile"
+  
   # Employees
   # > roles = { lifeguard, office, manager, asst-manager, maintainance, tennis, paddle, camp, admin }
   # > phone, cell, bio, height, weight, hometown, highschool, college, start_at, end_at
-  # devise_for :employees, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
-  # resources :employees do
-  # end
+  devise_for :employees, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
+  resources :employees do
+  
+  end
   
   # Static pages
   match 'about' => 'page#about'
@@ -52,7 +55,7 @@ Noepond::Application.routes.draw do
   
   # match 'teams/diving' => 'page#teams-diving'
   # match 'teams/paddle' => 'page#teams-paddle'
-  # match 'teams/swimming' => 'page#teams-swimming'
+  match 'teams/swimming' => 'page#teams_swimming'
   # match 'teams/tennis' => 'page#teams-tennis'
   # match 'teams/watershow' => 'page#teams-watershow'
   

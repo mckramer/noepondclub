@@ -9,12 +9,20 @@ class ApplicationController < ActionController::Base
   
   def get_tweets
     @npc_tweets ||= Twitter::Search.new.from("NoePondClub").per_page(3).fetch
+    
+    unless @npc_tweets.empty?
+      latest = @npc_tweets.last
+      if latest.text.include?("#closed") && latest.created_at.to_date == Date.today
+        @water_status = :closed
+      else
+        @water_status = :open
+      end
+    end
+    
     @mention_tweets ||= Twitter::Search.new.mentioning("NoePondClub").per_page(3).fetch
     
-    # Handle lack of new tweets
-    @no_tweets = true if @npc_tweets.empty? && @mention_tweets.empty?
     # Handle problems with Twitter
-    rescue Twitter::ServiceUnavailable, Errno::ETIMEDOUT then @no_tweets = true
+    rescue Twitter::ServiceUnavailable, Errno::ETIMEDOUT
   end
   
   def get_weather

@@ -1,0 +1,54 @@
+- content_for :title, "Register"
+- content_for :subtitle, "Create new employee account"
+%article
+  %section
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      %table
+        %thead
+          %tr
+            %th{:colspan => 2} Information
+        %tbody
+          %tr
+            %th{:style => "width: 40%"}= f.label :name_first
+            %td= f.text_field :name_first
+          %tr
+            %th= f.label :name_last
+            %td= f.text_field :name_last
+          %tr
+            %th= f.label :bio
+            %td= f.text_area :bio
+          %tr
+            %th
+              = f.label :phone
+              = f.label :phone, "###-###-####", :class => "hint"
+            %td= f.telephone_field :phone, :placeholder => "###-###-####", :pattern => "\\d{3}[\\-]\\d{3}[\\-]\\d{4}", :title => "###-###-####"
+          %tr
+            %th= f.label :highschool
+            %td= f.text_field :highschool
+          %tr
+            %th= f.label :college
+            %td= f.text_field :college
+          %tr
+            %th= f.label :roles
+            %td
+              - Employee.positions_list.each do |position|
+                = check_box_tag "employee[roles][]", position
+                = position.humanize
+                %br
+      %table
+        %thead
+          %tr
+            %th{:colspan => 2} Login information
+        %tbody
+          %tr
+            %th= f.label :email
+            %td= f.email_field :email
+          %tr
+            %th= f.label :password
+            %td= f.password_field :password
+          %tr
+            %th= f.label :password_confirmation
+            %td= f.password_field :password_confirmation
+      = f.submit "Register"
+    = render :partial => "devise/shared/links"

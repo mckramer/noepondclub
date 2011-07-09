@@ -1,0 +1,23 @@
+- content_for :title, "Employees"
+%article
+  %section
+    - if notice
+      %p#notice= notice
+    %table.reservations
+      %thead
+        %tr
+          %th
+          %th Name
+          %th Position
+          %th Home phone
+          %th Cell phone
+      %tbody
+        - @employees.each do |employee|
+          %tr
+            %td= link_to image_tag("http://maxkramer.me/images/view.png", :size => "20x20", :border => 0), employee
+            %td= employee.name
+            %td= employee.position
+            %td
+              %a{:href => "tel:#{employee.phone}"}= employee.phone
+            %td
+              %a{:href => "tel:#{employee.cell}"}= employee.cell

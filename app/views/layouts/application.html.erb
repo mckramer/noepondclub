@@ -43,6 +43,11 @@
       Air: <%= @weather.condition.temp %>&deg;<%= @weather.units.temperature %>&emsp;Water: <%= render 'shared/condition-water' %>
     </div>
     <% end %>
+    <% if @water_status === :closed %>
+    <div id="current-weather" style="position:absolute; top:5px; right:5px; background-color: red; padding: 7px 10px; border-radius:10px; z-index:-99; font-size:80%;">
+      Waterfront is closed
+    </div>
+    <% end %>
     <% if @weather_warning %>
     <div id="info">
       <%= render 'shared/caution-thunderstorms' if @weather_warning === :thunderstorms %>
@@ -64,7 +69,7 @@
 				<h2><%= link_to "Noe Pond Club", root_path %></h2> 
 				<h3>the <%= link_to "family", "/about/family" %></a> club since <%= link_to "1955", "/about/history" %></h3>
       </hgroup>
-      <div id="social" style="position:relative; top:-370px; left:530px;">
+      <div id="social" style="position:relative; top:-370px; left:530px; width: 45px;">
         <a href="http://www.twitter.com/NoePondClub">
           <img style="width:22px;" src="http://maxkramer.me/images/social/twitter_32.png" alt="Follow Noe Pond Club on Twitter"/>
         </a>
@@ -110,14 +115,16 @@
           <li><%= link_to "Home", root_path %></li> 
           <li>
             <%= link_to "Current members", "/current", :class => "locked" %>
-            <% if current_member.nil? == false %>
+            <% unless current_member.nil? %>
             <ul>
-              <li><%= link_to "Tennis court reservations", "/members/1/reservations/tennis", :class => "locked" %></li>
-              <% if true # (8..12).include?(Time.now.month) %>
-              <li><%= link_to "Paddle court reservations", "/members/1/reservations/paddle", :class => "locked" %></li>
+              <li><%= link_to "Tennis court reservations", member_tennis_reservations_path(current_member), :class => "locked" %></li>
+              <li><%= link_to "Tennis lessons", root_path, :class => "locked" %></li>
+              <% if (8..12).include?(Date.today.month) %>
+              <li><%= link_to "Paddle court reservations", root_path, :class => "locked" %></li>
+              <li><%= link_to "Paddle lessons", root_path, :class => "locked" %></li>
               <% end %>
-              <li><%= link_to "Tennis lessons", "/members/1/lessons/tennis", :class => "locked" %></li>
-              <li><%= link_to "Swim lessons", "/members/1/lessons/swimming", :class => "locked" %></li>
+              <li><%= link_to "Swim lessons", root_path, :class => "locked" %></li>
+              <li><%= link_to "Swim team", "/teams/swimming", :class => "locked" %></li>
               <li><%= link_to "Kids' Program", root_path, :class => "locked" %></li>
             </ul>
             <% end %>
@@ -130,9 +137,18 @@
       </nav>
       <div class="social">
         <h1><img src="http://si0.twimg.com/images/dev/cms/intents/bird/bird_blue/bird_16_blue.png" />&nbsp;&nbsp;Twitter</h1>
-        <% if @no_tweets %>
-        <h2><a href="https://twitter.com/#!/NoePondClub">Follow Noe Pond</a></h2>
+        <% if @npc_tweets.empty? && @mention_tweets.empty? %>
+        <ol>
+          <li class="first" style="min-height: 10px; text-align:center;">
+            <a href="http://twitter.com/noepondclub" class="twitter-follow-button" data-align="center">Follow @noepondclub</a>
+            <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+          </li>
+          <li style="min-height: 10px; text-align:center;">
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://noepondclub.org" data-text="I love @NoePondClub!" data-count="horizontal">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+          </li>
+        </ol>
         <% else %>
+        <% unless @npc_tweets.empty? %>
         <h2><a href="https://twitter.com/#!/NoePondClub">From Noe Pond</a></h2>
         <ol>
         <% first = true %>
@@ -140,7 +156,8 @@
           <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
-        <% if @mention_tweets %>
+        <% end %>
+        <% unless @mention_tweets.empty? %>
         <h2>Recent mentions</h2>
         <ol>
         <% first = true %>
@@ -185,7 +202,7 @@
       <p>&copy; 2010-2011 - Noe Pond Club, Inc.</p>
       <p><a href="http://maps.google.com/maps/place?um=1&ie=UTF-8&q=395+Southern+Blvd,+Chatham,+NJ+07928&fb=1&gl=us&hnear=0x89c3ac5c397a0f1d:0x6240bf700c9cc9bf,Maplewood,+NJ&cid=3740138674611884140">395 Southern Blvd, Chatham, NJ 07928</a> &mdash; <a href="tel:973-377-2445">973-377-2445</a></p>
       <p>Site design by <a href="http://maxkramer.me">Max Kramer</a> (<a href="http://twitter.com/maxckramer">@maxckramer</a>)</p> 
-		</footer> 
+		</footer>
 		<div id="validator"> 
 			<a href="http://validator.w3.org/check?uri=referer">Valid XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a> | <a href="http://beta.feedvalidator.org/">Valid RSS</a> | <a href="http://www.google.com/chrome/">Google Chrome</a> | <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a> | <a href="http://weather.yahoo.com">Yahoo! Weather</a>
     </div>
