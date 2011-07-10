@@ -24,6 +24,17 @@
               = f.label :phone, "###-###-####", :class => "hint"
             %td= f.telephone_field :phone, :placeholder => "###-###-####", :pattern => "\\d{3}[\\-]\\d{3}[\\-]\\d{4}", :title => "###-###-####"
           %tr
+            %th
+              = f.label :cell
+              = f.label :cell, "###-###-####", :class => "hint"
+            %td= f.telephone_field :cell, :placeholder => "###-###-####", :pattern => "\\d{3}[\\-]\\d{3}[\\-]\\d{4}", :title => "###-###-####"
+          %tr
+            %th= f.label :twitter
+            %td= f.text_field :twitter
+          %tr
+            %th= f.label :hometown
+            %td= f.text_field :hometown
+          %tr
             %th= f.label :highschool
             %td= f.text_field :highschool
           %tr

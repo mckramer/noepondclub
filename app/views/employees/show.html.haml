@@ -2,33 +2,74 @@
 - content_for :subtitle, "Employee: #{@employee.name}"
 %article
   %section
-    %h2 Basic information
+    #profile-pic{:style=>"float:right; border-radius:10px; background-color:white; margin: 0 0 20px 20px;"}
+      %img{:src=>"http://maxkramer.me/images/employees/#{@employee.id}.png", :style=>"margin: 10px; width: 275px; border-radius:5px;"}
+    %h2 Bio
+    %p= @employee.bio
     %p
-      Name:
-      = @employee.name
-    %p
-      Position:
+      Current position:
       = @employee.position
-    %p
-      Hometown:
-      = @employee.hometown
-    %p
-      High school:
-      = @employee.highschool
-    - unless @employee.college.blank?
-      %p
-        College:
-        = @employee.college
+    %p Previous position(s):
+    %ul
+      - if @employee.roles.include?("tester")
+        %li Tester
+      - if @employee.roles.include?("head-lifeguard")
+        %li Head Lifeguard
+      - if @employee.roles.include?("asst-lifeguard")
+        %li Asst. Head Lifeguard
+      - if @employee.roles.include?("lifeguard")
+        %li Lifeguard
+      - if @employee.roles.include?("head-office")
+        %li Head Office
+      - if @employee.roles.include?("asst-office")
+        %li Asst. Head Office
+      - if @employee.roles.include?("office")
+        %li Office
+        
+    .clear
+    %h2 Background
+    %table.reservations
+      %tbody
+        %tr
+          %th Hometown
+          %td= @employee.hometown
+        %tr
+          %th High school
+          %td= @employee.highschool
+        - unless @employee.college.blank?
+          %tr
+            %th College
+            %td= @employee.college
+        
     %h2 Stats
-    - unless @employee.height.blank?
-      %p 
-        Height:
-        = @employee.height_display
-    - unless @employee.weight.blank?
-      %p 
-        Weight:
-        = @employee.weight
-        lbs
-    %h2 Other information 
-    %p= "Profile created #{time_ago_in_words(@employee.created_at)} ago"
-    %p= "Profile last updated #{time_ago_in_words(@employee.updated_at)} ago"
+    %table.reservations
+      %tbody
+        - unless @employee.height.blank?
+          %tr
+            %th Height
+            %td= @employee.height_display
+        - unless @employee.weight.blank?
+          %tr
+            %th Weight
+            %td= @employee.weight_display
+    - if employee_signed_in?
+      %h2 Contact information
+      This information is only available to other staff.
+      %table.reservations
+        %tbody
+          - unless @employee.twitter.blank?
+            %tr
+              %th Twitter
+              %td= link_to "@#{@employee.twitter}", "https://twitter.com/#{@employee.twitter}"
+          %tr
+            %th Email address
+            %td= mail_to @employee.email
+          %tr
+            %th Home phone
+            %td= link_to @employee.phone, "tel:#{@employee.phone}"
+          - unless @employee.cell.blank?
+            %tr
+              %th Cell phone
+              %td= link_to @employee.cell, "tel:#{@employee.cell}"
+    %ol.links
+      %li= link_to "Return to employees", employees_path

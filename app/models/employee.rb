@@ -6,14 +6,14 @@ class Employee < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
                   :name_last, :name_first, :bio, :height, :weight,
-                  :highschool, :college, :phone, :roles
+                  :highschool, :college, :phone, :roles, :hometown, :twitter
   
   validates_presence_of :name_first, :name_last, :phone, :highschool, :roles
   
   public
   
   def self.positions_list
-    return ['admin', 'head', 'asst', 'manager', 'lifeguard', 'office']
+    return ['admin', 'manager', 'asst-manager', 'head-lifeguard', 'asst-lifeguard', 'lifeguard', 'head-office', 'asst-office', 'office', 'instructor']
   end
   
   def position
@@ -21,32 +21,34 @@ class Employee < ActiveRecord::Base
       if roles.include?("admin") 
         return "Web Admin"
       elsif roles.include?("manager")
-        if roles.include?("asst")
-          return "Asst. Manager"
-        else
-          return "Manager"
-        end
+        return "Manager"
+      elsif roles.include?("asst-manager")
+        return "Asst. Manager"
       elsif roles.include?("tester")
         return "Tester"
       elsif roles.include?("swim-coach")
         return "Swim coach"
+      elsif roles.include?("dive-coach")
+        return "Dive coach"
+      elsif roles.include?("head-lifeguard")
+        return "Head Lifeguard"
+      elsif roles.include?("asst-lifeguard")
+        return "Asst. Head Lifeguard"
       elsif roles.include?("lifeguard")
-        if roles.include?("head")
-          return "Head Lifeguard"
-        elsif roles.include?("asst")
-          return "Asst. Head Lifeguard"
-        else
-          return "Lifeguard"
-        end
-      elsif roles.include?("office")
-        return "Office & CHG personnel"
+        return "Lifeguard"
+      elsif roles.include?("office") || roles.include?("asst-office") || roles.include?("head-office") 
+        return "Office & CHG worker"
       end
     end
     return "Unknown"
   end
   
   def height_display
-    return "#{height / 12}' #{height % 12}\""
+    return "#{height / 12}'#{height % 12}\""
+  end
+  
+  def weight_display
+    return "#{weight} lbs"
   end
   
   def name
@@ -55,6 +57,14 @@ class Employee < ActiveRecord::Base
   
   def reversed_name
     return "#{name_last}, #{name_first}"
+  end
+  
+  def lifeguard?
+    return roles.include?("lifeguard") || roles.include?("asst-lifeguard") || roles.include?("head-lifeguard")
+  end
+  
+  def office?
+    return roles.include?("office") || roles.include?("asst-office") || roles.include?("head-office")
   end
   
 end

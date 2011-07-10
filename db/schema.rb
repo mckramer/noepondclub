@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709141247) do
+ActiveRecord::Schema.define(:version => 20110710191005) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20110709141247) do
     t.datetime "locked_at"
     t.integer  "height"
     t.integer  "weight"
-    t.string   "bio"
+    t.text     "bio",                    :limit => 255
     t.string   "cell"
     t.string   "college"
     t.string   "highschool"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20110709141247) do
     t.datetime "updated_at"
     t.string   "name_last"
     t.string   "name_first"
+    t.string   "twitter"
   end
 
   add_index "employees", ["email"], :name => "index_employees_on_email", :unique => true
