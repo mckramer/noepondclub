@@ -4,8 +4,8 @@ Noepond::Application.routes.draw do
   # > comment, authorable (member or employee)
   resources :posts
   # > title, body, authorable (member or employee), category
-  # resources :events
-  # > title, start_at, end_at, notes, category = {swim-team, tennis-team, dive-team, watershow, tennis, paddle, camp}
+  resources :events
+  # > title, start_at, end_at, allday, where, description, category = {swim-team, tennis-team, dive-team, watershow, tennis, paddle, camp}
     
   # Members
   devise_for :members, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' }
@@ -40,6 +40,7 @@ Noepond::Application.routes.draw do
   match 'current' => 'page#current'
   match 'directions' => 'page#directions'
   match 'employment' => 'page#employment'
+  match 'hours' => 'page#hours'
   
   match 'prospective' => 'page#prospective'
   match 'prospective/emblems' => 'page#prospective-emblems'

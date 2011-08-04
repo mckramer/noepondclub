@@ -6,15 +6,27 @@
       = devise_error_messages!
       %table
         %thead
+          %tr
+            %th{:colspan => 2} Information
         %tbody
           %tr
-            %th= f.label :name_first
-            %td= f.text_field :name_first
+            %th{:style=>"width:50%;"}= f.label :name
+            %td= f.text_field :name
           %tr
-            %th= f.label :name_last
-            %td= f.text_field :name_last
+            %th= f.label :badge
+            %td= f.number_field :badge
           %tr
-            %th= f.label :email
+            %th
+              = f.label :membership
+              = f.label :membership, 'Type of membership', :class => 'hint'
+            %td= f.select :membership, options_for_select(Member.membership_types, resource.membership), { :include_blank => true }
+      %table
+        %thead
+          %tr
+            %th{:colspan => 2} Account
+        %tbody
+          %tr
+            %th{:style=>"width:50%;"}= f.label :email
             %td= f.email_field :email
           %tr
             %th

@@ -1,0 +1,8 @@
+- content_for :title, "Events"
+- content_for :subtitle, "Editing event"
+%article
+  %section
+    = render 'form'
+    %ol.links
+      %li= link_to "Show", @event
+      %li= link_to "Back to events", events_path

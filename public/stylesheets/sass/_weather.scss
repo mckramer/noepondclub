@@ -246,7 +246,7 @@ body.weather-28 {
   }
 }  
 .forecast > .weather-28 {
-  background-image: url(http://maxkramer.me/images/weather/Mostly_Cloudy.png) left center no-repeat;
+  background-image: url(http://maxkramer.me/images/weather/Mostly_Cloudy.png);
   @include icon-style;
 }
 /* Cloudy, night */

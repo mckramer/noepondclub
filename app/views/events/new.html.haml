@@ -1,0 +1,7 @@
+- content_for :title, "Events"
+- content_for :subtitle, "New event"
+%article
+  %section
+    = render 'form'
+    %p
+      = link_to "Back to events", events_path

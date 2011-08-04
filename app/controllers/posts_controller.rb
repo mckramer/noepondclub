@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_member!, :except => [:index, :show]
+  #before_filter :authenticate_employee!, :except => [:index, :show]
   
   # GET /posts
-  # GET /posts.xml
   def index
     @posts = Post.all
 
@@ -13,7 +13,6 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1
-  # GET /posts/1.xml
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.recent.limit(10).all
@@ -26,7 +25,6 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/new
-  # GET /posts/new.xml
   def new
     @post = Post.new
 
@@ -42,7 +40,6 @@ class PostsController < ApplicationController
   end
 
   # POST /posts
-  # POST /posts.xml
   def create
     @post = Post.new(params[:post])
 
@@ -58,7 +55,6 @@ class PostsController < ApplicationController
   end
 
   # PUT /posts/1
-  # PUT /posts/1.xml
   def update
     @post = Post.find(params[:id])
 
@@ -74,7 +70,6 @@ class PostsController < ApplicationController
   end
 
   # DELETE /posts/1
-  # DELETE /posts/1.xml
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

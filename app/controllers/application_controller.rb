@@ -17,12 +17,13 @@ class ApplicationController < ActionController::Base
       else
         @water_status = :open
       end
+      
     end
     
     @mention_tweets ||= Twitter::Search.new.mentioning("NoePondClub").per_page(3).fetch
     
     # Handle problems with Twitter
-    rescue Twitter::ServiceUnavailable, Errno::ETIMEDOUT
+    rescue Twitter::ServiceUnavailable, Errno::ETIMEDOUT, SocketError
   end
   
   def get_weather
@@ -30,10 +31,10 @@ class ApplicationController < ActionController::Base
     @weather ||= client.lookup_by_woeid(12760949)
     thunderstorms = [3, 4, 37, 38, 39, 45, 47]
     if thunderstorms.include?(@weather.forecasts[0].code) || thunderstorms.include?(@weather.condition.code)
-      @weather_warning = :thunderstorms
+      @weather_warning = :thunderstorms if (8..20).include?(Time.now.hour)
     end
     
-    rescue RunTimeError
+    #rescue RunTimeError
   end
   
   def get_classes

@@ -13,7 +13,7 @@ class Employee < ActiveRecord::Base
   public
   
   def self.positions_list
-    return ['admin', 'manager', 'asst-manager', 'head-lifeguard', 'asst-lifeguard', 'lifeguard', 'head-office', 'asst-office', 'office', 'instructor']
+    return ['admin', 'manager', 'asst-manager', 'tester', 'swim-coach', 'dive-coach', 'head-lifeguard', 'asst-lifeguard', 'lifeguard', 'head-office', 'asst-office', 'office', 'instructor']
   end
   
   def position

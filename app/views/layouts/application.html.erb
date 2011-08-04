@@ -3,12 +3,12 @@
   <head id="www-noepondclub-org">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title><%= (content_for?(:title)) ? yield(:title) + " | Noe Pond Club" : "Noe Pond Club | Chatham, NJ" %></title>
-    <meta name="title" content="Noe Pond Club">
+    <!--<meta name="title" content="Noe Pond Club">-->
     <meta name="description" content="Private swimming, tennis, and paddle club in Chatham, NJ.">
     <meta name="keywords" content="NPC, Noe, Pond, Club" /> 
     <meta name="google-site-verification" content="">
     <meta name="author" content="Max Kramer (maxkramer.me)">
-    <meta name="Copyright" content="Copyright Max Kramer and Noe Pond Club. All Rights Reserved.">
+    <meta name="copyright" content="Copyright Max Kramer and Noe Pond Club. All Rights Reserved.">
     <% if current_page?(root_url) %>
     <meta name="DC.title" content="Noe Pond Club">
     <meta name="DC.subject" content="Private swimming, tennis, and paddle club in Chatham, NJ.">
@@ -32,6 +32,15 @@
     <!--<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />-->
     <%= stylesheet_link_tag "style", "package" %>
     <%= javascript_include_tag :defaults %>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <style>
+      article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+      audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+      audio:not([controls]) { display: none; }
+      [hidden] { display: none; }
+    </style>
+    <![endif]-->
     <% if content_for?(:intro) %>
     <%= javascript_include_tag "slider.js" %>
     <% end %>
@@ -67,7 +76,7 @@
       <hgroup>
         <h1>NPC</h1>
 				<h2><%= link_to "Noe Pond Club", root_path %></h2> 
-				<h3>the <%= link_to "family", "/about/family" %></a> club since <%= link_to "1955", "/about/history" %></h3>
+				<h3>the <%= link_to "family", "/about/family" %> club since <%= link_to "1955", "/about/history" %></h3>
       </hgroup>
       <div id="social" style="position:relative; top:-370px; left:530px; width: 45px;">
         <a href="http://www.twitter.com/NoePondClub">
@@ -81,10 +90,16 @@
     </header>
     <nav class="info">
       <ul>
-        <% if current_member.nil? %>
-        <li><%= link_to "Login", new_member_session_path %></li>
-        <li><%= link_to "Apply for membership", root_path %></li>
-        <li><%= link_to "Signup", new_member_registration_path %></li>
+        <% if current_member.nil? && current_employee.nil? %>
+        <li><i>Are you a member?</i></li>
+        <li>&rarr;&nbsp;<%= link_to "Login", new_member_session_path %></li>
+        <li><i>Not one, but want to be?</i></li>
+        <li>&rarr;&nbsp;<%= link_to "Apply for membership", new_member_registration_path %></li>
+        <% elsif current_member.nil? && current_employee %>
+        <li><i>You are logged in as employee: </i></li>
+        <li><%= link_to current_employee.name, current_employee %></li>
+        <li><i>Logout when done</i></li>
+        <li>&rarr;&nbsp;<%= link_to "Logout", destroy_employee_session_path %></li>
         <% else %>
         <li><%= link_to "#{current_member.name} (##{current_member.badge})", member_path(current_member) %></li>
         <li><%= link_to "Edit account", edit_member_registration_path %></li>
@@ -110,7 +125,7 @@
     </div>
     <aside>
       <nav>
-        <h1><img width="16px" src="http://maxkramer.me/images/navigation.png" />&nbsp;&nbsp;Navigation</h1> 
+        <h1><img style="width:16px;" src="http://maxkramer.me/images/navigation.png" alt="Navigation icon" />&nbsp;&nbsp;Navigation</h1> 
         <ul> 
           <li><%= link_to "Home", root_path %></li> 
           <li>
@@ -131,13 +146,14 @@
           </li>
           <li><%= link_to "Prospective members", "/prospective" %></li> 
           <li><%= link_to "Employment", "/employment" %></li> 
-          <li><%= link_to "Directions", "/directions" %></li> 
+          <li><%= link_to "Directions", "/directions" %></li>
+          <li><%= link_to "Hours", "/hours" %></li>
           <li><%= link_to "Contact", "/contact" %></li> 
         </ul>
       </nav>
       <div class="social">
-        <h1><img src="http://si0.twimg.com/images/dev/cms/intents/bird/bird_blue/bird_16_blue.png" />&nbsp;&nbsp;Twitter</h1>
-        <% if @npc_tweets.empty? && @mention_tweets.empty? %>
+        <h1><img src="http://si0.twimg.com/images/dev/cms/intents/bird/bird_blue/bird_16_blue.png" alt="Twitter icon" />&nbsp;&nbsp;Twitter</h1>
+        <% if @npc_tweets.blank? && @mention_tweets.blank? %>
         <ol>
           <li class="first" style="min-height: 10px; text-align:center;">
             <a href="http://twitter.com/noepondclub" class="twitter-follow-button" data-align="center">Follow @noepondclub</a>
@@ -169,7 +185,7 @@
         <% end %>
       </div>
       <div class="weather">
-        <h1><img width="16px" src="http://maxkramer.me/images/weather.png" />&nbsp;&nbsp;Weather</h1>
+        <h1><img style="width:16px;" src="http://maxkramer.me/images/weather.png" alt="Weather icon" />&nbsp;&nbsp;Weather</h1>
         <h2>Current conditions</h2>
         <div class="current-conditions">
           <span class="temp">
@@ -204,7 +220,7 @@
       <p>Site design by <a href="http://maxkramer.me">Max Kramer</a> (<a href="http://twitter.com/maxckramer">@maxckramer</a>)</p> 
 		</footer>
 		<div id="validator"> 
-			<a href="http://validator.w3.org/check?uri=referer">Valid XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid CSS</a> | <a href="http://beta.feedvalidator.org/">Valid RSS</a> | <a href="http://www.google.com/chrome/">Google Chrome</a> | <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a> | <a href="http://weather.yahoo.com">Yahoo! Weather</a>
+			<a href="http://validator.w3.org/check?uri=referer">Valid HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">Valid CSS3</a> | <a href="http://www.google.com/chrome/">Google Chrome</a> | <a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a> | <a href="http://maps.google.com">Google Maps</a> | <a href="http://weather.yahoo.com">Yahoo! Weather</a>
     </div>
     <% if content_for?(:intro) %>
     <script type="text/javascript"> 

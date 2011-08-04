@@ -2,6 +2,7 @@ class PageController < ApplicationController
   before_filter :authenticate_member!, :only => [:current, :teams_swimming]
   def home
     @post = Post.first
+    @events = Event.order("allday desc, start_at asc")
   end
   
   def directions

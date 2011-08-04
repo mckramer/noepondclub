@@ -13,8 +13,9 @@
       Category:
       = @post.category.humanize
     %ol.links
-      %li= link_to 'Edit', edit_post_path(@post) if member_signed_in?
+      - if member_signed_in?
+        %li= link_to 'Edit', edit_post_path(@post)
       %li= link_to 'Back', posts_path
-    .clear
-    %hr
-    = render 'comments'
+    /.clear
+    /%hr
+    /= render 'comments'

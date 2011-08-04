@@ -1,0 +1,17 @@
+- content_for :title, "Events"
+%article
+  %section
+    %table.reservations
+      %thead
+        %tr
+          %th Date
+          %th Time
+          %th Title
+      %tbody
+        - @events.each do |event|
+          %tr
+            %th= event.date
+            %td= event.time
+            %td= event.title
+    %ol.links
+      %li= link_to 'Create new event', new_event_path

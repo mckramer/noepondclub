@@ -35,7 +35,7 @@
 %article
   %section
     %h2 Welcome to the Noe Pond Club
-    %p The Noe Pond Club was founded in 1955 as a member-owned, non-profit family swim club by Nancy Tasman Brower and Bailey Brower Jr. The three-and-a-half-acre pond, the Club's hallmark, has been an important part of the community and Brower family history since the early 1800's. The pond was created for the family's large dairy and fruit farm. During the winters, the pond was the local source of ice.
+    %p The Noe Pond Club was founded in 1955 as a member-owned, non-profit family swim club by Nancy Tasman Brower and Bailey Brower Jr. The three-and-a-half-acre pond, the Club's hallmark, has been an important part of the community and Brower family history since the early 1800's. The pond was created for the family's large dairy and fruit farm.
     - if @post
       %div.featured
         %h2 Last update
@@ -53,12 +53,21 @@
             = link_to "Read more", @post
             = link_to "Comment", @post
     %h2 What's going on today around the club?
-    %table.events{:style=>"background-color:white;margin:0;padding:0px;width:100%;border-collapse:collapse;"}
-      %thead
-      %tbody
-        %tr{:style=>"border-bottom: 1px solid gray;"}
-          %td{:style=>"padding: 10px;"} 9:00-11:00am
-          %td{:style=>"padding: 10px;"} Swim meet vs. Clearwater
-        %tr
-          %td{:style=>"padding: 10px;"} 5:00-7:00pm
-          %td{:style=>"padding: 10px;"} Diving meet vs. New Providence
+    - if @events
+      %table.events{:style=>"background-color:white;margin:0;padding:0px;width:100%;border-collapse:collapse;"}
+        %thead
+        %tbody
+          - @events.each do |event|
+            %tr{:style=>"border-top: 1px solid gray;"}
+              %td{:style=>"padding: 10px;width:40%;"}= event.time
+              %td{:style=>"padding: 10px;"}= link_to event.title, event
+      %p 
+        You can check out some of the
+        = link_to "upcoming events", events_path
+        as well.
+    - else
+      %p 
+        Apparently nothing.  Check out some of the
+        = link_to "upcoming events", events_path
+        instead.
+          

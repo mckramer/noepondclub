@@ -11,8 +11,16 @@
       = @employee.position
     %p Previous position(s):
     %ul
+      - if @employee.roles.include?("manager")
+        %li Manager
+      - if @employee.roles.include?("asst-manager")
+        %li Asst. Manager
       - if @employee.roles.include?("tester")
         %li Tester
+      - if @employee.roles.include?("swim-coach")
+        %li Swim team coach
+      - if @employee.roles.include?("dive-coach")
+        %li Dive team coach
       - if @employee.roles.include?("head-lifeguard")
         %li Head Lifeguard
       - if @employee.roles.include?("asst-lifeguard")
@@ -25,7 +33,12 @@
         %li Asst. Head Office
       - if @employee.roles.include?("office")
         %li Office
-        
+      - if @employee.roles.include?("grill")
+        %li Grill chef
+      - if @employee.roles.include?("counselor")
+        %li Counselor
+    - if @employee.roles.include?("instructor")
+      %p= "#{@employee.name_first} is a swim lesson instructor."
     .clear
     %h2 Background
     %table.reservations
@@ -40,18 +53,18 @@
           %tr
             %th College
             %td= @employee.college
-        
-    %h2 Stats
-    %table.reservations
-      %tbody
-        - unless @employee.height.blank?
-          %tr
-            %th Height
-            %td= @employee.height_display
-        - unless @employee.weight.blank?
-          %tr
-            %th Weight
-            %td= @employee.weight_display
+    - unless @employee.height.blank? && @employee.weight.blank?
+      %h2 Stats
+      %table.reservations
+        %tbody
+          - unless @employee.height.blank?
+            %tr
+              %th Height
+              %td= @employee.height_display
+          - unless @employee.weight.blank?
+            %tr
+              %th Weight
+              %td= @employee.weight_display
     - if employee_signed_in?
       %h2 Contact information
       This information is only available to other staff.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110710191005) do
+ActiveRecord::Schema.define(:version => 20110710215357) do
 
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
@@ -80,6 +80,18 @@ ActiveRecord::Schema.define(:version => 20110710191005) do
   add_index "employees", ["email"], :name => "index_employees_on_email", :unique => true
   add_index "employees", ["reset_password_token"], :name => "index_employees_on_reset_password_token", :unique => true
   add_index "employees", ["unlock_token"], :name => "index_employees_on_unlock_token", :unique => true
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean  "allday"
+    t.string   "where"
+    t.text     "description"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "independents", :force => true do |t|
     t.string   "name_first"

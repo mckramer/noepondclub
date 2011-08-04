@@ -1,0 +1,36 @@
+= form_for @event do |f|
+  -if @event.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      %ul
+        - @event.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table
+    %tbody
+      %tr
+        %th= f.label :title
+        %td= f.text_field :title
+      %tr
+        %th= f.label :description
+        %td= f.text_area :description
+      %tr
+        %th= f.label :start_at, "What time does the event begin?"
+        %td= f.datetime_select :start_at
+      %tr
+        %th= f.label :end_at, "What time does the event end?"
+        %td= f.datetime_select :end_at
+      %tr
+        %th
+          = f.label :allday, "Is this an all day event?"
+          = f.label :allday, "The times will be ignored.", :class => "hint"
+        %td= f.check_box :allday
+      %tr
+        %th= f.label :where, "Where does the event take place?"
+        %td= f.text_field :where
+      
+      %tr
+        %th= f.label :category
+        %td= f.select :category, options_for_select(Event.category_list)
+  .actions
+    = f.submit 'Save'

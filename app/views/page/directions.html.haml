@@ -20,8 +20,16 @@
           = link_to "Summit", :controller => "page", :action => "directions", :from => "summit"
     %section
       %h2 Other points
-      %p Find directions to NPC from anywhere.
-      %script{ :src => "http://www.gmodules.com/ig/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/114281111391296844949/driving-directions.xml&amp;up_fromLocation=&amp;up_myLocations=395%20Southern%20Blvd%2C%20Chatham%20NJ%2C%2007928&amp;up_defaultDirectionsType=&amp;up_autoExpand=&amp;synd=open&amp;w=320&amp;h=55&amp;title=Directions+to+NPC+via+Google&amp;brand=light&amp;lang=en&amp;country=US&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js" }
+      %p Find directions to NPC from anywhere.  Enter the starting address below.
+      %div
+        = form_tag('http://maps.google.com/maps', :method => :get)
+        = hidden_field_tag 'f', 'd'
+        = hidden_field_tag 'source', 's_d'
+        = text_field_tag 'saddr', nil, :placeholder => "example: 123 Main Street, Madison, NJ"
+        = hidden_field_tag 'daddr', '395 Southern Blvd, Chatham, NJ 07928'
+        = hidden_field_tag 'hl', 'en'
+        = submit_tag 'Map it!'
+      %p Powered by Google Maps.  Note that you will be leaving the Noe Pond site.
   - else
     %section
       %iframe{ :name => "resumeFrame", :id => "resumepartframe", :src => "https://noepondclub.org/directions/#{@directions}", :style => "width:100%; height:500px;" }

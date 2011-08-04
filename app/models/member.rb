@@ -17,17 +17,19 @@ class Member < ActiveRecord::Base
   # validates_presence_of :email, :password
   
   validates_uniqueness_of :badge
-  
-  #def to_param
-  #  if badge.nil? || badge <= 0
-  #    "asdasd"
-  #  else
-  #    badge
-  #  end
-  #end
+ 
+=begin 
+  def to_param
+    if badge.nil? || badge <= 0
+      email
+    else
+      badge
+    end
+  end
+=end
   
   def self.membership_types
-    return ['family', 'single', 'senior', 'lifetime']
+    return ['single', 'family', 'senior', 'lifetime', 'family-of-two', 'junior']
   end
   
   def display

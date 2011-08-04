@@ -479,7 +479,7 @@ body.weather-28 {
     background-size: 32px; }
 
 .forecast > .weather-28 {
-  background-image: url(http://maxkramer.me/images/weather/Mostly_Cloudy.png) left center no-repeat;
+  background-image: url(http://maxkramer.me/images/weather/Mostly_Cloudy.png);
   background-position: 10px;
   background-repeat: no-repeat;
   background-size: 32px; }
@@ -600,7 +600,7 @@ input[type=submit], input[type=button] {
   font-family: inherit;
   margin: 5px 0;
   padding: 5px 10px;
-  width: none; }
+  width: auto; }
 
 input[type=submit]:hover {
   background-color: teal;
@@ -752,7 +752,7 @@ div.field, div.actions {
 
 #notice {
   background-color: white;
-  border-color: 1px solid green;
+  border: 1px solid green;
   border-radius: 5px;
   color: green;
   margin: 5px 20px;
