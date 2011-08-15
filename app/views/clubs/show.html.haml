@@ -1,0 +1,39 @@
+- content_for :title, "Club"
+- content_for :subtitle, @club.name
+%article
+  %section
+    - if notice
+      %p#notice= notice
+    #clubmap{:style=>"float:right; background-color:white; padding: 5px; border-radius: 5px; margin-left: 15px;"}
+      %img{ :src => "http://maps.googleapis.com/maps/api/staticmap?center=#{@club.address.sub(' ', '+')}&zoom=14&size=300x300&sensor=false&markers=color:red|label:Club|#{@club.address.sub(' ', '+')}" }
+    %p
+      %b Address:
+      = link_to @club.address, "http://maps.google.com/maps?saddr=395+Southern+Blvd,+Chatham,+NJ+07928&daddr=#{@club.address.sub(' ', '+')}"
+    %p
+      %b Directions:
+      = link_to "From NPC", "http://maps.google.com/maps?saddr=395+Southern+Blvd,+Chatham,+NJ+07928&daddr=#{@club.address.sub(' ', '+')}"
+    %p
+      %b Website:
+      = link_to "www.club.com", root_path
+    .clear
+    %table.reservations
+      %thead
+        %tr
+          %th{:colspan=>2} Sports we play against them
+      %tbody
+        %tr
+          %th Diving
+          %td= @club.diving ? "Yes" : "No"
+        %tr
+          %th Paddle
+          %td= @club.paddle ? "Yes" : "No"
+        %tr
+          %th Swimming
+          %td= @club.swimming ? "Yes" : "No"
+        %tr
+          %th Tennis
+          %td= @club.tennis ? "Yes" : "No"
+    %ol.links
+      - if member_signed_in?
+        %li= link_to "Edit", edit_club_path(@club)
+      %li= link_to "Back to clubs", clubs_path

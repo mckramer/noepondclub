@@ -25,3 +25,17 @@ def make_admin
   puts "Super administrator created with password = \"#{password}\" (minus the quotes)."
   # Pay attention to this output for password
 end
+
+def make_clubs
+  puts "Creating clubs..."
+  Club.create!(
+    :name       => "Noe Pond Club",
+    :address    => "395 Southern Blvd, Chatham, NJ 07928",
+    #:email     => "http://www.noepondclub.org",
+    :diving     => true,
+    :paddle     => true,
+    :swimming   => true,
+    :tennis     => true
+  )
+  puts "Clubs created."
+end

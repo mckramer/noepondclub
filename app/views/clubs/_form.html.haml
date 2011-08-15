@@ -1,0 +1,29 @@
+= form_for @club do |f|
+  - if @club.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@club.errors.count, "error")} prohibited this club from being saved:"
+      %ul
+        - @club.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table
+    %tbody
+      %tr
+        %th= f.label :name
+        %td= f.text_field :name
+      %tr
+        %th= f.label :address
+        %td= f.text_field :address
+      %tr
+        %th What sports do they play NPC in?
+        %td
+          = f.check_box :diving
+          = f.label :diving
+          = f.check_box :paddle
+          = f.label :paddle
+          = f.check_box :swimming
+          = f.label :swimming
+          = f.check_box :tennis
+          = f.label :tennis
+  .actions
+    = f.submit 'Save'

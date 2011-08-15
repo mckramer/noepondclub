@@ -1,0 +1,8 @@
+- content_for :title, "Club"
+- content_for :subtitle, "Edit club"
+%article
+  %section
+    = render 'form'
+    ol.links
+      %li= link_to "Show", @club
+      %li= link_to "Back to clubs", clubs_path

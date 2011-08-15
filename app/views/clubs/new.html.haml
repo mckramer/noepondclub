@@ -1,0 +1,6 @@
+- content_for :title, "New club"
+%article
+  %section
+    = render 'form'
+    %ol.links
+      %li= link_to "Back to clubs", clubs_path

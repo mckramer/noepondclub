@@ -1,0 +1,25 @@
+- content_for :title, "Clubs"
+%article
+  %section
+    %table.reservations
+      %thead
+        %tr
+          %th{:rowspan => 2} Name
+          %th{:rowspan => 2} Address
+          %th{:colspan => 4} Sports we play them in
+        %tr
+          %th Tennis
+          %th Paddle
+          %th Swimming
+          %th Diving
+      %tbody
+        - @clubs.each do |club|
+          %tr
+            %td= link_to club.name, club
+            %td= link_to club.address, "http://maps.google.com/?q=#{club.address.sub(' ', '+')}"
+            %td= club.diving ? "Yes" : "No"
+            %td= club.paddle ? "Yes" : "No"
+            %td= club.swimming ? "Yes" : "No"
+            %td= club.tennis ? "Yes" : "No"
+    %ol.links
+      %li= link_to 'Add new club', new_club_path

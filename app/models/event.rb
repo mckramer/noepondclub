@@ -1,6 +1,8 @@
 class Event < ActiveRecord::Base
   acts_as_commentable
   
+  #has_one :score
+  
   def to_param
     "#{id}-#{title.parameterize}"
   end
@@ -21,5 +23,9 @@ class Event < ActiveRecord::Base
     else
       return "#{start_at.to_time} - next day"
     end
+  end
+  
+  def scored?
+    this.score.exists?
   end
 end

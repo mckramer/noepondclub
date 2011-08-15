@@ -1,5 +1,7 @@
 Noepond::Application.routes.draw do
-  
+  resources :clubs
+  # > name, address, diving, paddle, swimming, tennis
+
   resources :comments, :path_prefix => '/:commentable_type/:commentable_id'
   # > comment, authorable (member or employee)
   resources :posts

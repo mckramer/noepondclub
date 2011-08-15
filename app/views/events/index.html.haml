@@ -1,6 +1,7 @@
 - content_for :title, "Events"
 %article
   %section
+  - unless @events.empty?
     %table.reservations
       %thead
         %tr
@@ -10,8 +11,10 @@
       %tbody
         - @events.each do |event|
           %tr
-            %th= event.date
-            %td= event.time
-            %td= event.title
+          %th= event.date
+          %td= event.time
+          %td= event.title
+  - else
+    %p There are not any upcoming events.  Check back soon though. We are sure to be cooking something up.
     %ol.links
       %li= link_to 'Create new event', new_event_path

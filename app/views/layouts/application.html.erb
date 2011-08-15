@@ -10,7 +10,7 @@
     <meta name="author" content="Max Kramer (maxkramer.me)">
     <meta name="copyright" content="Copyright Max Kramer and Noe Pond Club. All Rights Reserved.">
     <% if current_page?(root_url) %>
-    <meta name="DC.title" content="Noe Pond Club">
+    <!--<meta name="DC.title" content="Noe Pond Club">
     <meta name="DC.subject" content="Private swimming, tennis, and paddle club in Chatham, NJ.">
     <meta name="DC.creator" content="Max Kramer (maxkramer.me)">
     <meta property="og:title" content="Noe Pond Club"/>
@@ -26,7 +26,7 @@
     <meta property="og:postal-code" content="07928" />
     <meta property="og:country-name" content="USA" />
     <meta property="og:email" content="contact@noepondclub.org" />
-    <meta property="og:phone_number" content="973-377-2445" />
+    <meta property="og:phone_number" content="973-377-2445" />-->
     <% end %>
     <link rel="shortcut icon" href="/images/favicon.png" />
     <!--<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />-->
@@ -167,18 +167,16 @@
         <% unless @npc_tweets.empty? %>
         <h2><a href="https://twitter.com/#!/NoePondClub">From Noe Pond</a></h2>
         <ol>
-        <% first = true %>
         <% @npc_tweets.each do |tweet| %>
-          <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
+          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" alt="Twitter profile image" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
         <% end %>
         <% unless @mention_tweets.empty? %>
         <h2>Recent mentions</h2>
         <ol>
-        <% first = true %>
         <% @mention_tweets.each do |tweet| %>
-          <li<%= ' class="first"'.html_safe if first %>><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
+          <li><a href="https://twitter.com/<%= tweet.from_user %>/status/<%= tweet.id %>"><img src="<%= tweet.profile_image_url %>" alt="Twitter profile image" /><%= tweet.text %><div class="time_ago"><%= time_ago_in_words(tweet.created_at) %> ago</div></a></li>
         <% end %>
         </ol>
         <% end %>
@@ -216,7 +214,7 @@
     <div class="clear"></div>
     <footer>
       <p>&copy; 2010-2011 - Noe Pond Club, Inc.</p>
-      <p><a href="http://maps.google.com/maps/place?um=1&ie=UTF-8&q=395+Southern+Blvd,+Chatham,+NJ+07928&fb=1&gl=us&hnear=0x89c3ac5c397a0f1d:0x6240bf700c9cc9bf,Maplewood,+NJ&cid=3740138674611884140">395 Southern Blvd, Chatham, NJ 07928</a> &mdash; <a href="tel:973-377-2445">973-377-2445</a></p>
+      <p><a href="http://maps.google.com/maps/place?um=1&ie=UTF-8&q=395+Southern+Blvd,+Chatham,+NJ+07928&fb=1&gl=us&cid=3740138674611884140">395 Southern Blvd, Chatham, NJ 07928</a> &mdash; <a href="tel:973-377-2445">973-377-2445</a></p>
       <p>Site design by <a href="http://maxkramer.me">Max Kramer</a> (<a href="http://twitter.com/maxckramer">@maxckramer</a>)</p> 
 		</footer>
 		<div id="validator"> 

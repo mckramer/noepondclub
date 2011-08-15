@@ -36,13 +36,62 @@ def make_members
       :membership             => membership,
       :password               => password,
       :password_confirmation  => password,
-      :name_first             => name_first,
-      :name_last              => name_last,
-      :name_middle            => name_middle,
-      :name_suffix            => name_suffix
+      :name                   => name
     )
   end
   puts "Members created."
+end
+
+def make_independents
+  Member.all.each do |member|
+    # Create 1st parent
+    member.independents.create!(
+      :name_first => Faker::Name.first_name,
+      :name_middle => Faker::Name.first_name,
+      :name_last => Faker::Name.last_name,
+      :name_suffix => Faker::Name.suffix,
+      :email => Faker::Internet.email("independent-#{member.id}-a"),
+      :phone => Faker::PhoneNumber.phone_number
+    )
+    # Create 2nd parent
+    member.independents.create!(
+      :name_first => Faker::Name.first_name,
+      :name_middle => Faker::Name.first_name,
+      :name_last => Faker::Name.last_name,
+      :name_suffix => Faker::Name.suffix,
+      :email => Faker::Internet.email("independent-#{member.id}-b"),
+      :phone => Faker::PhoneNumber.phone_number
+    )
+  end
+end
+
+def make_dependents
+  Member.all.each do |member|
+    (0..4).to_a.sample.times do
+      dob = Date.civil(Date.today.year-rand(14), rand(12)+1, rand(28)+1)
+      emblem_bluefrog       = Date.civil(dob.year + 4, rand(2)+6, rand(28)+1) if age(dob) > 4
+      emblem_greenfish      = Date.civil(dob.year + 5, rand(2)+6, rand(28)+1) if age(dob) > 5
+      emblem_goldfish       = Date.civil(dob.year + 6, rand(2)+6, rand(28)+1) if age(dob) > 6
+      emblem_redshark       = Date.civil(dob.year + 7, rand(2)+6, rand(28)+1) if age(dob) > 7
+      emblem_maroonshark    = Date.civil(dob.year + 7, rand(2)+6, rand(28)+1) if age(dob) > 8
+      emblem_silverdolphin  = Date.civil(dob.year + 10, rand(2)+6, rand(28)+1) if age(dob) > 10 && rand(10) > 7
+      emblem_goldendolphin  = Date.civil(dob.year + 11, rand(2)+6, rand(28)+1) if age(dob) > 11 && rand(10) > 5
+      
+      member.dependents.create!(
+        :name_first => Faker::Name.first_name,
+        :name_middle => Faker::Name.first_name,
+        :name_last => Faker::Name.last_name,
+        :email => Faker::Internet.email("dependent-#{member.id}"),
+        :emblem_bluefrog => emblem_bluefrog,
+        :emblem_greenfish => emblem_greenfish,
+        :emblem_goldfish => emblem_goldfish,
+        :emblem_redshark => emblem_redshark,
+        :emblem_maroonshark => emblem_maroonshark,
+        :emblem_silverdolphin => emblem_silverdolphin,
+        :emblem_goldendolphin => emblem_goldendolphin
+      )
+    end
+  end
 end
 
 def make_employees
@@ -77,129 +126,52 @@ def make_positions
   puts "Roles created."
 end
 
-def make_allergens
-  names = [ "Peanuts", "Tree nuts", "Soy", "Water", "Wheat", "Shellfish", "Latex", "Milk", "Eggs", "MSG" ]
-  (names.length).times do |n|
-    name = names[n]
-    description = Faker::Lorem.paragraph
-    Allergen.create!(
-      :name       => name,
-      :abbr       => name,
-      :description => description
+def make_clubs
+  clubs = ["Fish & Game", "Clearwater", "Crestview", "Berkley"]
+  clubs.length.times do |n|
+    Club.create!(
+      :name => clubs[n],
+      :address => "#{rand(200)} Main Street, Chatham, NJ 07928",
+      :diving => rand(2).even?,
+      :paddle => rand(2).even?,
+      :swimming => rand(2).even?,
+      :tennis => rand(2).even?
     )
   end
-  puts "Allergens created."
+  puts "Clubs created."
 end
 
-def make_allergies
-  make_count = (0..3).to_a
-  Participant.all.each do |participant|
-    make_count.sample.times do
-      allergen = Allergen.find :first, :offset => ( Allergen.count * rand ).to_i
-      # No !.  Will skip if doesn't validate
-      Allergy.create(
-        :allergen_id => allergen.id,
-        :user_id => participant.id
-      )
-    end
-  end
-  puts "Allergies created."
-end
-
-def make_drugs
-  drugs = ['Albuterol', 'Alendronate', 'Amitriptyline', 'Amoxicillin', 'Atenolol', 'Baclofen', 'Benazepril', 'Bumetanide', 'Buspirone', 'Cephalexin', 'Chlorpropamide', 'Cimetidine', 'Ciprofloxacin', 'Citalopram', 'Clonidine', 'Cyclobenzaprine', 'Dexamethasone', 'Diclofenac', 'Dicyclomine', 'Diltiazem', 'Doxazosin', 'Doxepin Hcl', 'Doxycycline Hyclate', 'Enalapril', 'Estradiol', 'Estropipate', 'Famotidine', 'Fluocinonide', 'Fluoxetine', 'Folic Acid', 'Furosemide', 'Gentamicin', 'Glimepiride', 'Glipizide', 'Glyburide', 'Haloperidol', 'Hydralazine', 'Hydrochlorothiazide', 'Hydrocortisone', 'Ibuprofen', 'Indapamide', 'Isoniazid', 'Lactulose', 'Levothyroxine', 'Loratadine', 'Lovastatin', 'Magnesium Oxide', 'Medroxyprogesterone', 'Megestrol', 'Meloxicam', 'Metformin', 'Methyldopa', 'Methylprednisolone', 'Naproxen', 'Nortriptyline', 'Nystatin', 'Oxybutynin', 'Penicillin', 'Phenazopyridine', 'Pilocarpine', 'Potassium Chloride', 'Pravastatin', 'Prednisone', 'Prochlorperazine', 'Promethazine', 'Ranitidine', 'Spironolactone']
-  50.times do |n|
-    name          = drugs[n]
-    description   = Faker::Lorem.paragraph
-    Drug.create!(
-      :name         => name,
-      :description  => description
+def make_posts
+  50.times do
+    Post.create!(
+      :title => Faker::Lorem.words,
+      :body => Faker::Lorem.paragraphs(rand(3)+1)
+      #:category => Category.all.sample
     )
   end
-  #Drug.limit(10).each do |drug, n|
-  #  parent = Drug.find_by_id(n + 15)
-  #  drug.update!
-  #end
-  puts "Drugs created."
 end
 
-def make_indications
-  # should complete "drug is used to ___", such as drug is used to lower blood pressure
-  verbs = ['lower', 'raise', 'strengthen', 'weaken', 'improve', 'protect', 'reduce', 'relieve']
-  nouns = ['blood pressure', 'cholesterol', 'the immune system', 'the number of white blood cells', 'minor aches and pains', 'minor inflammation', 'minor fever']
-  make_count = (1..3).to_a
-  Drug.all.each do |drug|
-    make_count.sample.times do
-      text = verbs[rand(verbs.length)] + ' ' + nouns[rand(nouns.length)]
-      Indication.create!(
-        :text         => text,
-        :description  => Faker::Lorem.paragraph,
-        :drug_id      => drug.id
-      )
-    end
+def make_events
+  50.times do
+    start_at  = DateTime.current
+    end_at    = start_at + 1.day
+    Event.create!(
+      :title        => Faker::Lorem.words
+      :start_at     => start_at
+      :end_at       => end_at
+      :allday       => rand(2).even?
+      :where        => rand(2).even? ? "Noe Pond Club" : "#{Faker::Address.street_address} Chatham"
+      :description  => Faker::Lorem.sentences
+      #:category    => Category.all.sample
+    )
   end
-  puts "Indications created."
 end
 
-def make_dosages
-  units_list = ['mg', 'mL', 'oz']
-  frequencies = [1, 2, 4, 6, 8, 12, 24, 56, 84, 168]
-  forms = ['tablet', 'capsule', 'liquid', 'gel', 'cream']
-  routes = ['oral', 'nasal', 'Intraveneous (IV)', 'Intramusculer (IM)', 'topical']
-  make_count = (1..3).to_a
-  Drug.all.each do |drug|
-    make_count.sample.times do
-      units = units_list.choice
-      strength = rand(290) + 10
-      dose = (rand(3) + 1) * strength
-      frequency = frequencies.sample
-      form = forms.sample
-      route = routes.sample
-      Dosage.create!(
-        :units => units,
-        :strength => strength,
-        :dose => dose,
-        :frequency => frequency,
-        :form => form,
-        :route => route,
-        :drug_id => drug.id
-      )
-    end
-  end
-  puts "Dosages created."
-end
-
-def make_prescriptions
-  make_count = (0..3).to_a
-  Participant.all.each do |participant|
-    make_count.sample.times do
-      drug = Drug.find :first, :offset => ( Drug.count * rand ).to_i
-      indication = drug.indications.sample
-      dosage = drug.dosages.sample
-      prescribed_at = rand(5.days).ago
-      archived_at = rand(100).even? ? Time.now : nil 
-      # No !.  Will skip if doesn't validate
-      Prescription.create(
-        :drug_id        => drug.id,
-        :indication_id  => indication.id,
-        :dosage_id      => dosage.id,
-        :user_id        => participant.id,
-        :prescribed_at  => prescribed_at,
-        :archived_at    => archived_at,
-        :note           => Faker::Lorem.paragraph
-      )
-    end
-  end
-  puts "Prescriptions created."
-end
-
-private
-def random_roles
-  role_ids = Array.new
-  Role.all do |role|
-    if role.name.lowercase == "health provider"
-      role_ids[] = role.id
-      return role_ids
-    end
+def age(dob = Date.today)
+  age = Date.today.year - dob.year
+  if Date.today < ( dob + age.years )
+    return age - 1
+  else 
+    return age
   end
 end
