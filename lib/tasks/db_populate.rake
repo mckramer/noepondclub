@@ -156,11 +156,11 @@ def make_events
     start_at  = DateTime.current
     end_at    = start_at + 1.day
     Event.create!(
-      :title        => Faker::Lorem.words
-      :start_at     => start_at
-      :end_at       => end_at
-      :allday       => rand(2).even?
-      :where        => rand(2).even? ? "Noe Pond Club" : "#{Faker::Address.street_address} Chatham"
+      :title        => Faker::Lorem.words,
+      :start_at     => start_at,
+      :end_at       => end_at,
+      :allday       => rand(2).even?,
+      :where        => rand(2).even? ? "Noe Pond Club" : "#{Faker::Address.street_address} Chatham",
       :description  => Faker::Lorem.sentences
       #:category    => Category.all.sample
     )

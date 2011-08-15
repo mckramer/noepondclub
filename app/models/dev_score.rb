@@ -1,4 +1,4 @@
-class Score < ActiveRecord::Base
+`class Score < ActiveRecord::Base
   
   belongs_to :scoreable, :polymorphic => true
   
@@ -64,5 +64,6 @@ class Score < ActiveRecord::Base
       :tie
     end
   end
-  
+ 
 end
+`
